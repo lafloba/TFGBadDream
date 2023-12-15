@@ -12,6 +12,9 @@ public class PlayerMovement : MonoBehaviour
     public float playerSpeed;
     private Vector3 movePlayer;
 
+    public float gravity = 9.8f;
+    public float fallVelocity;
+
     public Camera mainCamera;
     private Vector3 camForward;
     private Vector3 camRight;
@@ -35,9 +38,13 @@ public class PlayerMovement : MonoBehaviour
 
         movePlayer = playerInput.x * camRight + playerInput.z * camForward;
 
+        movePlayer = movePlayer * playerSpeed;
+
         player.transform.LookAt(player.transform.position + movePlayer);
 
-        player.Move(playerInput * playerSpeed * Time.deltaTime);
+        SetGravity();
+
+        player.Move(movePlayer * Time.deltaTime);
 
         Debug.Log(player.velocity.magnitude);
     }
@@ -53,6 +60,20 @@ public class PlayerMovement : MonoBehaviour
 
         camForward = camForward.normalized;
         camRight = camRight.normalized;
+    }
+
+    void SetGravity()
+    {
+        if (player.isGrounded)
+        {
+            fallVelocity = -gravity * Time.deltaTime;
+            movePlayer.y = fallVelocity;
+        }
+        else
+        {
+            fallVelocity -= gravity * Time.deltaTime;
+            movePlayer.y = fallVelocity;
+        }
     }
 
 }

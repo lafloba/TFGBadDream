@@ -542,6 +542,7 @@ MonoBehaviour:
   playerSpeed: 11
   gravity: 40
   fallVelocity: 0
+  jumpForce: 10
   mainCamera: {fileID: 963194227}
 --- !u!143 &1584764641
 CharacterController:

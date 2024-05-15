@@ -521,6 +521,27 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!65 &803593036
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 803593030}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.002, y: 0.03642111, z: 0.062391657}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &817335134 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -8813108176892860300, guid: 71eae3711ccf21645a74abaaee126cb0,
@@ -953,6 +974,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 803593034}
+    - targetCorrespondingSourceObject: {fileID: -3834925656242646407, guid: 71eae3711ccf21645a74abaaee126cb0,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 803593036}
     - targetCorrespondingSourceObject: {fileID: -8813108176892860300, guid: 71eae3711ccf21645a74abaaee126cb0,
         type: 3}
       insertIndex: -1
@@ -1561,7 +1586,6 @@ MonoBehaviour:
   pickedObject: {fileID: 0}
   mensaje: 
   tiempoDeMensaje: 3
-  fontSize: 62
   tagVent: ventilacion
   tagCambioEscena: cambioEscena
 --- !u!54 &2084936295

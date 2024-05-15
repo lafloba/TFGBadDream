@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class Enemigo : MonoBehaviour
 {
@@ -10,6 +11,8 @@ public class Enemigo : MonoBehaviour
     public Animator ani; // Referencia al componente Animator del objeto
     public Quaternion angulo; // Almacena el ángulo de rotación del enemigo
     public float grado; // Almacena el ángulo en grados
+
+
 
     // Método Start se llama antes de que se actualice el primer frame
     void Start()
@@ -34,8 +37,8 @@ public class Enemigo : MonoBehaviour
         // Si el cronómetro alcanza un cierto valor, cambia la rutina
         if (cronometro >= 4)
         {
-        rutina = Random.Range(0, 2); // Selecciona una rutina aleatoria entre 0 y 1
-        cronometro = 0; // Reinicia el cronómetro
+            rutina = Random.Range(0, 2); // Selecciona una rutina aleatoria entre 0 y 1
+            cronometro = 0; // Reinicia el cronómetro
         }
 
         // Dependiendo de la rutina actual, se ejecuta un comportamiento

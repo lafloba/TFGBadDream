@@ -46,20 +46,19 @@ public class Enemigo : MonoBehaviour
         {
             case 0: // Rutina 0: El enemigo se detiene
                 ani.SetBool("walk", false);
-            break;
+                break;
 
             case 1: // Rutina 1: El enemigo rota en un ángulo aleatorio
                 grado = Random.Range(0, 360); // Selecciona un ángulo aleatorio entre 0 y 360 grados
                 angulo = Quaternion.Euler(0, grado, 0); // Convierte el ángulo a un formato Quaternion
                 rutina++; // Incrementa la rutina para que en la siguiente actualización ejecute el siguiente comportamiento
-            break;
+                break;
 
             case 2: // Rutina 2: El enemigo se mueve hacia adelante en la dirección del ángulo aleatorio
                 transform.rotation = Quaternion.RotateTowards(transform.rotation, angulo, 0.5f); // Rota gradualmente hacia el ángulo aleatorio
                 transform.Translate(Vector3.forward * 1 * Time.deltaTime); // Se mueve hacia adelante
                 ani.SetBool("walk", true); // Activa la animación de caminar
-            break;
+                break;
         }
     }
 }
-

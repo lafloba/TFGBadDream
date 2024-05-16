@@ -370,6 +370,7 @@
 "Assets/Scripts/Animations.cs"
 "Assets/Scripts/CameraFollow.cs"
 "Assets/Scripts/Enemigo.cs"
+"Assets/Scripts/EnemyAiTutorial.cs"
 "Assets/Scripts/GetObject.cs"
 "Assets/Scripts/PlayerController.cs"
 "Assets/Scripts/PlayerMovement.cs"

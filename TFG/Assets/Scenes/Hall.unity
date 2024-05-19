@@ -159,10 +159,10 @@ NavMeshObstacle:
   m_GameObject: {fileID: 23490152}
   m_Enabled: 1
   serializedVersion: 3
-  m_Shape: 1
-  m_Extents: {x: 0.008, y: 0.0050000004, z: 0.020000001}
+  m_Shape: 0
+  m_Extents: {x: 0.00001, y: 0.0050000004, z: 0.00001}
   m_MoveThreshold: 0.1
-  m_Carve: 0
+  m_Carve: 1
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 0, z: 0.015000001}
   m_TimeToStationary: 0.5
@@ -262,6 +262,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: monster
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 836d4315678c1a14f803e01d7cc5668a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1385716755696851068, guid: 836d4315678c1a14f803e01d7cc5668a,
         type: 3}
       propertyPath: m_AABB.m_Extent.x
@@ -284,10 +289,6 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 805410566}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 836d4315678c1a14f803e01d7cc5668a,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 805410568}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 836d4315678c1a14f803e01d7cc5668a,
         type: 3}
       insertIndex: -1
@@ -934,23 +935,6 @@ Animator:
     type: 3}
   m_PrefabInstance: {fileID: 134032582}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &805410568
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 805410561}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8dedc7d201a69d444869cd7dac515c56, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rutina: 0
-  cronometro: 0
-  ani: {fileID: 805410567}
-  angulo: {x: 0, y: 0, z: 0, w: 0}
-  grado: 0
 --- !u!195 &805410569
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -985,15 +969,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f39333548dcc3e44ba3e90039fc3b47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ani: {fileID: 805410567}
   rutina: 0
   cronometro: 0
-  ani: {fileID: 805410567}
+  angulo: {x: 0, y: 0, z: 0, w: 0}
   grado: 0
-  distanciaMovimiento: 5
-  velocidadMovimiento: 1.5
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 0
+  target: {fileID: 0}
 --- !u!1 &840473555 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -7807715984213767268, guid: 1ca4f10a8ef59c7499ad8e30e0c29a83,
@@ -1609,7 +1590,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1473461685
 Transform:
   m_ObjectHideFlags: 0
@@ -1853,7 +1834,7 @@ MonoBehaviour:
   m_Center: {x: 0, y: 2, z: 0}
   m_LayerMask:
     serializedVersion: 2
-    m_Bits: 576
+    m_Bits: 704
   m_UseGeometry: 0
   m_DefaultArea: 0
   m_GenerateLinks: 0

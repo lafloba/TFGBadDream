@@ -1,77 +1,67 @@
 ﻿using UnityEngine;
 using UnityEngine.AI;
+using System.Collections;
+using System.Collections.Generic;
 
-public class EnemyAiTutoriaal : MonoBehaviour
+public class EnemyAiTutorial : MonoBehaviour
 {
+    public Animator ani;
     public int rutina;
     public float cronometro;
-    public Animator ani;
+    public Quaternion angulo;
     public float grado;
-    public float distanciaMovimiento = 5f;
-    public float velocidadMovimiento = 1.5f;
-    public LayerMask groundLayer; // Capa del terreno navegable
 
-    private NavMeshAgent agente;
-    private Vector3 destino;
-    private bool moviendose;
+    public GameObject target;
 
     void Start()
     {
         ani = GetComponent<Animator>();
-        agente = GetComponent<NavMeshAgent>();
-        agente.speed = velocidadMovimiento;
-        agente.angularSpeed = 120f;
-        agente.acceleration = 8f;
+        target = GameObject.Find("Artie");
     }
 
     void Update()
     {
-        Comportamiento_Enemigo();
-        ani.SetBool("walk", agente.velocity.magnitude > 0.1f);
+        ComportamientoEnemigo();
     }
 
-    public void Comportamiento_Enemigo()
+    public void ComportamientoEnemigo()
     {
-        cronometro += 1 * Time.deltaTime;
-
-        if (cronometro >= 4)
+        if (Vector3.Distance(transform.position, target.transform.position) > 1)
         {
-            rutina = Random.Range(0, 3);
-            cronometro = 0;
-            moviendose = false;
+            cronometro += 1 * Time.deltaTime;
+            if(cronometro >= 4)
+            {
+                rutina = Random.Range(0, 2);
+                cronometro = 0;
+            }
+
+            switch (rutina)
+            {
+                case 0:
+                    ani.SetBool("walk", false);
+                    break;
+
+                case 1:
+                    grado = Random.Range(0, 360);
+                    angulo = Quaternion.Euler(0, grado, 0);
+                    rutina++;
+                    break;
+
+                case 2:
+                    transform.rotation = Quaternion.RotateTowards(transform.rotation, angulo, 0.5f);
+                    transform.Translate(Vector3.forward * 1 * Time.deltaTime);
+                    ani.SetBool("walk", true);
+                    break;
+            }
         }
 
-        switch (rutina)
+        else
         {
-            case 0:
-                agente.isStopped = true;
-                break;
-
-            case 1:
-                if (!moviendose)
-                {
-                    grado = Random.Range(0, 360);
-                    transform.rotation = Quaternion.Euler(0, grado, 0);
-                    rutina++;
-                }
-                break;
-
-            case 2:
-                if (!moviendose)
-                {
-                    Vector3 randomDirection = Random.insideUnitSphere * distanciaMovimiento;
-                    randomDirection += transform.position;
-
-                    NavMeshHit hit;
-                    if (NavMesh.SamplePosition(randomDirection, out hit, distanciaMovimiento, NavMesh.AllAreas))
-                    {
-                        destino = hit.position;
-                        agente.SetDestination(destino);
-                        agente.isStopped = false;
-                        moviendose = true;
-                    }
-                }
-                break;
+            var lookPos = target.transform.position - transform.position;
+            lookPos.y = 0;
+            var rotation = Quaternion.LookRotation(lookPos);
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, rotation, 2);
+            ani.SetBool("walk", true);
         }
     }
 }

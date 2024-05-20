@@ -868,13 +868,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 466589414734787676, guid: 031596bc40760c546872767e87ce7e32,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1890721396}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 031596bc40760c546872767e87ce7e32,
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 1705048171}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 031596bc40760c546872767e87ce7e32,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1705048173}
   m_SourcePrefab: {fileID: 100100000, guid: 031596bc40760c546872767e87ce7e32, type: 3}
+--- !u!4 &695553913 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 466589414734787676, guid: 031596bc40760c546872767e87ce7e32,
+    type: 3}
+  m_PrefabInstance: {fileID: 695553912}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &805410561 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 836d4315678c1a14f803e01d7cc5668a,
@@ -1587,7 +1601,7 @@ GameObject:
   - component: {fileID: 1466093913}
   - component: {fileID: 1466093915}
   m_Layer: 10
-  m_Name: GameObject
+  m_Name: Collide
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1860,6 +1874,55 @@ Animator:
     type: 3}
   m_PrefabInstance: {fileID: 695553912}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1705048173
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1705048169}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb2d11880681f6a42a7c32e6f79a10d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flashlightPrefab: {fileID: 3053939540550410180, guid: d6bc1032ac356ce4f95534edd74f285d,
+    type: 3}
+  flashlightHolder: {fileID: 1890721396}
+  flashlightScale: {x: 0.15, y: 0.15, z: 0.15}
+  flashlightRotation: {x: -45, y: 100, z: 0}
+  animator: {fileID: 1705048172}
+--- !u!1 &1890721395
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1890721396}
+  m_Layer: 7
+  m_Name: FlashlightHolder
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1890721396
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1890721395}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.001, y: 0.0046, z: -0.0027}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 695553913}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1991972874 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 1ca4f10a8ef59c7499ad8e30e0c29a83,

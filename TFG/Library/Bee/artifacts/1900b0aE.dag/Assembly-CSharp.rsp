@@ -374,6 +374,7 @@
 "Assets/Scripts/EquipFlashlight.cs"
 "Assets/Scripts/GetObject.cs"
 "Assets/Scripts/Menu.cs"
+"Assets/Scripts/MenuOpciones.cs"
 "Assets/Scripts/PlayerController.cs"
 "Assets/Scripts/PlayerMovement.cs"
 "Assets/Scripts/ThirdPersonCamera.cs"

@@ -753,6 +753,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: peonza
       objectReference: {fileID: 0}
+    - target: {fileID: -5898571028816514986, guid: 71eae3711ccf21645a74abaaee126cb0,
+        type: 3}
+      propertyPath: m_Intensity
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: -5181062712988202898, guid: 71eae3711ccf21645a74abaaee126cb0,
         type: 3}
       propertyPath: m_Name

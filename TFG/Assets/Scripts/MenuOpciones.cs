@@ -3,7 +3,6 @@ using UnityEngine.UI;
 
 public class MenuOpciones : MonoBehaviour
 {
-    public AudioSource audioSource; // Referencia al AudioSource
     public Toggle muteToggle; // Referencia al Toggle
 
     void Start()
@@ -28,7 +27,8 @@ public class MenuOpciones : MonoBehaviour
 
     private void SetMute(bool isMuted)
     {
-        audioSource.mute = isMuted;
+        AudioListener.volume = isMuted ? 0 : 1;
     }
 }
+
 

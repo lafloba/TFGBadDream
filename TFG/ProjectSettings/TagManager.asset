@@ -8,7 +8,9 @@ TagManager:
   - PickableObject
   - puerta
   - ventilacion
+  - pila
   - cambioEscena
+  - pilaAncha
   layers:
   - Default
   - TransparentFX

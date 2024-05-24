@@ -381,6 +381,7 @@
 "Assets/Scripts/PlayerController.cs"
 "Assets/Scripts/PlayerMovement.cs"
 "Assets/Scripts/ThirdPersonCamera.cs"
+"Assets/Scripts/TutorialTextManager.cs"
 "Assets/TutorialInfo/Scripts/Readme.cs"
 -langversion:9.0
 

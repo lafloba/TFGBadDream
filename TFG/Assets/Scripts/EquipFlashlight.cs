@@ -36,12 +36,12 @@ public class EquipFlashlight : MonoBehaviour
         {
             if (getObjectScript.contadorPilaFina > 0)
             {
-                Equip(5f);
+                Equip(10f);
                 getObjectScript.contadorPilaFina--;
             }
             else if (getObjectScript.contadorPilaAncha > 0)
             {
-                Equip(10f);
+                Equip(5f);
                 getObjectScript.contadorPilaAncha--;
             }
             else

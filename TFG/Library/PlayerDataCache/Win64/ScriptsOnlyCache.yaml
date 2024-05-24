@@ -439,6 +439,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 10858}
     - Class: 115
       Script: {instanceID: 0}
+    - Class: 128
+      Script: {instanceID: 0}
     - Class: 137
       Script: {instanceID: 0}
     - Class: 143
@@ -879,7 +881,7 @@ ScriptsOnlyBuild:
     className: SplitToning
   - hash:
       serializedVersion: 2
-      Hash: 79fcefd6e5b42eab5dcb1bf5d29335dc
+      Hash: 2017d8776238f68cf3f520eeb0ddf7c2
     assemblyName: Assembly-CSharp
     namespaceName: 
     className: GetObject

@@ -19,6 +19,9 @@ public class PlayerController : MonoBehaviour
     private Vector3 camForward; //saber a que direccion tiene que mirar
     private Vector3 camRight;
 
+    public float moveSpeed = 5f; // Velocidad de movimiento del personaje
+
+
     // Start is called before the first frame update
     void Start()
     {

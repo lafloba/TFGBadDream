@@ -373,6 +373,7 @@
 "Assets/Scripts/Animations.cs"
 "Assets/Scripts/CameraFollow.cs"
 "Assets/Scripts/EnemyAiTutorial.cs"
+"Assets/Scripts/EquipBlanket.cs"
 "Assets/Scripts/EquipFlashlight.cs"
 "Assets/Scripts/GetObject.cs"
 "Assets/Scripts/Menu.cs"

@@ -11,6 +11,7 @@ TagManager:
   - pila
   - cambioEscena
   - pilaAncha
+  - Monster
   layers:
   - Default
   - TransparentFX

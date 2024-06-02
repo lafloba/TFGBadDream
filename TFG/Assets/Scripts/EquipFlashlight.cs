@@ -6,13 +6,25 @@ public class EquipFlashlight : MonoBehaviour
     private GameObject flashlightInstance;
     public Transform flashlightHolder;
     public Vector3 flashlightScale = new Vector3(1, 1, 1);
-    public Vector3 flashlightRotation = new Vector3(90, 0, 0);  // Ajustar la rotación de la linterna
-    public Animator animator;  // Añadir una referencia al Animator
+    public Vector3 flashlightRotation = new Vector3(90, 0, 0); // Ajustar la rotación de la linterna
+    public Animator animator; // Añadir una referencia al Animator
+    public float attackCooldownFina = 2.0f; // Tiempo de enfriamiento entre ataques para pila fina
+    public float attackCooldownAncha = 1.5f; // Tiempo de enfriamiento entre ataques para pila ancha
+    public float detectionRadius = 0.5f; // Radio de detección del SphereCast
+    public float maxDetectionDistance = 10f; // Distancia máxima de detección
 
     private bool isEquipped = false;
     private GetObject getObjectScript;
     private float equipDuration = 0f;
     private float equipStartTime = 0f;
+    private Light flashlightLight;
+    private float lastAttackTime = -9999f; // Tiempo del último ataque inicializado en un valor muy bajo
+    private int flashlightDamage = 20; // Daño de la linterna (se ajustará según la pila)
+    private float attackCooldown = 0.9f; // Tiempo de enfriamiento actual (se ajustará según la pila)
+
+    // Tipos de pilas
+    private enum BatteryType { None, PilaFina, PilaAncha }
+    private BatteryType currentBatteryType = BatteryType.None;
 
     void Start()
     {
@@ -36,12 +48,12 @@ public class EquipFlashlight : MonoBehaviour
         {
             if (getObjectScript.contadorPilaFina > 0)
             {
-                Equip(10f);
+                Equip(10f, BatteryType.PilaFina);
                 getObjectScript.contadorPilaFina--;
             }
             else if (getObjectScript.contadorPilaAncha > 0)
             {
-                Equip(5f);
+                Equip(5f, BatteryType.PilaAncha);
                 getObjectScript.contadorPilaAncha--;
             }
             else
@@ -50,33 +62,53 @@ public class EquipFlashlight : MonoBehaviour
             }
         }
 
-        // Check if the flashlight is equipped and the duration has passed
+        // Comprobar si la linterna está equipada y si la duración ha pasado
         if (isEquipped && Time.time - equipStartTime >= equipDuration)
         {
             Unequip();
         }
+
+        // Comprobar si la linterna está equipada y usarla para atacar al monstruo
+        if (isEquipped)
+        {
+            AttackWithFlashlight();
+        }
     }
 
-    void Equip(float duration)
+    void Equip(float duration, BatteryType batteryType)
     {
         equipDuration = duration;
         equipStartTime = Time.time;
+        currentBatteryType = batteryType;
+
+        // Ajustar el daño y el tiempo de enfriamiento según el tipo de pila
+        if (batteryType == BatteryType.PilaFina)
+        {
+            flashlightDamage = 20;
+            attackCooldown = attackCooldownFina;
+        }
+        else if (batteryType == BatteryType.PilaAncha)
+        {
+            flashlightDamage = 40;
+            attackCooldown = attackCooldownAncha;
+        }
 
         if (flashlightInstance == null)
         {
             flashlightInstance = Instantiate(flashlightPrefab, flashlightHolder);
             flashlightInstance.transform.localPosition = Vector3.zero;
-            flashlightInstance.transform.localRotation = Quaternion.Euler(flashlightRotation);  // Ajustar la rotación de la linterna
+            flashlightInstance.transform.localRotation = Quaternion.Euler(flashlightRotation); // Ajustar la rotación de la linterna
             flashlightInstance.transform.localScale = flashlightScale;
+            flashlightLight = flashlightInstance.GetComponentInChildren<Light>();
         }
 
         if (animator != null)
         {
-            animator.SetBool("isEquipping", true);  // Activar la animación
+            animator.SetBool("isEquipping", true); // Activar la animación
         }
 
         isEquipped = true;
-        Debug.Log("Linterna equipada por " + duration + " segundos.");
+        Debug.Log("Linterna equipada con " + batteryType + " por " + duration + " segundos.");
     }
 
     void Unequip()
@@ -85,14 +117,59 @@ public class EquipFlashlight : MonoBehaviour
         {
             Destroy(flashlightInstance);
             flashlightInstance = null;
+            flashlightLight = null;
         }
 
         if (animator != null)
         {
-            animator.SetBool("isEquipping", false);  // Desactivar la animación
+            animator.SetBool("isEquipping", false); // Desactivar la animación
         }
 
         isEquipped = false;
+        currentBatteryType = BatteryType.None;
         Debug.Log("Linterna desequipada.");
+    }
+
+    void AttackWithFlashlight()
+    {
+        // Comprobar si ha pasado suficiente tiempo desde el último ataque
+        if (Time.time - lastAttackTime >= attackCooldown)
+        {
+            Debug.Log("Intentando atacar con la linterna.");
+            if (flashlightLight != null)
+            {
+                Ray ray = new Ray(flashlightLight.transform.position, flashlightLight.transform.forward);
+                RaycastHit hit;
+
+                // Usar SphereCast para detectar enemigos en un área más amplia
+                if (Physics.SphereCast(ray, detectionRadius, out hit, maxDetectionDistance))
+                {
+                    Debug.DrawRay(ray.origin, ray.direction * maxDetectionDistance, Color.red); // Depuración del rayo
+
+                    if (hit.collider.CompareTag("Monster"))
+                    {
+                        Debug.Log("Monstruo detectado."); // Depuración de la detección del monstruo
+
+                        // Añadir lógica para dañar al monstruo
+                        EnemyAiTutorial monster = hit.collider.GetComponent<EnemyAiTutorial>();
+                        if (monster != null)
+                        {
+                            // Comprobar la distancia entre la linterna y el monstruo
+                            float distanceToMonster = Vector3.Distance(flashlightLight.transform.position, monster.transform.position);
+                            if (distanceToMonster <= maxDetectionDistance)
+                            {
+                                monster.TakeDamage(flashlightDamage);
+                                lastAttackTime = Time.time; // Actualizar el tiempo del último ataque
+                                Debug.Log("Atacó al monstruo con " + flashlightDamage + " de daño. Próximo ataque disponible en " + attackCooldown + " segundos.");
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    Debug.Log("No se detectó ningún objeto en el rango de la linterna."); // Depuración de la falta de detección
+                }
+            }
+        }
     }
 }

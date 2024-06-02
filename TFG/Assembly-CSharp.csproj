@@ -59,6 +59,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\EquipFlashlight.cs" />
+    <Compile Include="Assets\Scripts\EquipBlanket.cs" />
     <Compile Include="Assets\Scripts\TutorialTextManager.cs" />
     <Compile Include="Assets\Scripts\MenuOpciones.cs" />
     <Compile Include="Assets\Scripts\GetObject.cs" />

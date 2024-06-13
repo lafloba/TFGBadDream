@@ -8,62 +8,45 @@ public class EnemyAiTutorial : MonoBehaviour
     private int maxHealth = 100;
     private int currentHealth;
 
-    public NavMeshAgent agent;
-    public Transform player;
-    public LayerMask whatIsPlayer;
-
-    // Patroling
-    public float walkPointRange;
-    private Vector3 walkPoint;
-    private bool walkPointSet;
-
-    // States
-    public float sightRange;
-    public bool playerInSightRange;
-
-    // Speed settings
-    public float patrolSpeed = 1f;
-    public float chaseSpeed = 4f;
-
-    // Patroling settings
-    public float minPatrolWaitTime = 1f;
-    public float maxPatrolWaitTime = 3f;
-    private float patrolWaitTime;
+    public Transform[] patrolPoints;
+    public int targetPoint;
+    public float speed;
 
     void Start()
     {
         ani = GetComponent<Animator>();
         currentHealth = maxHealth;
-        agent = GetComponent<NavMeshAgent>();
-        agent.speed = patrolSpeed;
-        agent.autoBraking = false;
-        agent.stoppingDistance = 1.5f;
-        walkPointSet = false;
-        walkPoint = Vector3.zero;
-        patrolWaitTime = Random.Range(minPatrolWaitTime, maxPatrolWaitTime);
+
+        targetPoint = 0;
     }
 
     void Update()
     {
-        playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
+        transform.position = Vector3.MoveTowards(transform.position, patrolPoints[targetPoint].position, speed * Time.deltaTime);
+        // Calcular la dirección hacia el siguiente punto de patrulla
+        Vector3 directionToTarget = patrolPoints[targetPoint].position - transform.position;
+        Quaternion rotationToTarget = Quaternion.LookRotation(directionToTarget);
 
-        if (!playerInSightRange)
+        // Rotar el personaje para que siempre mire hacia adelante
+        transform.rotation = Quaternion.Slerp(transform.rotation, rotationToTarget, speed * Time.deltaTime);
+
+        // Controlar la animación de caminar basada en la velocidad del personaje
+        if (speed > 0.1f)
         {
-            Patroling();
+            ani.SetBool("walk", true); // Asume que "IsWalking" es el parámetro booleano para la animación de caminar
         }
         else
         {
-            agent.speed = chaseSpeed;
-            ChasePlayer();
+            ani.SetBool("walk", false);
         }
-
-        UpdateAnimations();
     }
+
+
 
     public void TakeDamage(int damage)
     {
         currentHealth -= damage;
-        Debug.Log("Monster hit by flashlight! Remaining health: " + currentHealth);
+        Debug.Log("Monster hit by flashlight Remaining health: " + currentHealth);
 
         if (currentHealth <= 0)
         {
@@ -77,51 +60,21 @@ public class EnemyAiTutorial : MonoBehaviour
         Destroy(gameObject);
     }
 
-    private void Patroling()
+    void OnTriggerEnter(Collider other)
     {
-        if (!walkPointSet)
+        if (other.gameObject.CompareTag("Waypoint")) // Asegúrate de que los waypoints tengan el tag "Waypoint"
         {
-            SearchWalkPoint();
-        }
-        else
-        {
-            agent.SetDestination(walkPoint);
-            if (!agent.pathPending && agent.remainingDistance <= agent.stoppingDistance)
-            {
-                if (patrolWaitTime <= 0f)
-                {
-                    walkPointSet = false;
-                    patrolWaitTime = Random.Range(minPatrolWaitTime, maxPatrolWaitTime);
-                }
-                else
-                {
-                    patrolWaitTime -= Time.deltaTime;
-                }
-            }
+            IncreaseTargetInt();
         }
     }
 
-    private void ChasePlayer()
+    void IncreaseTargetInt()
     {
-        agent.SetDestination(player.position);
-    }
-
-    private void SearchWalkPoint()
-    {
-        Vector3 randomDirection = Random.insideUnitSphere * walkPointRange;
-        randomDirection += transform.position;
-
-        NavMeshHit hit;
-        if (NavMesh.SamplePosition(randomDirection, out hit, walkPointRange, NavMesh.AllAreas))
+        targetPoint++;
+        Debug.Log("IncreaseTargetInt ");
+        if (targetPoint >= patrolPoints.Length)
         {
-            walkPoint = hit.position;
-            walkPointSet = true;
+            targetPoint = 0;
         }
-    }
-
-    private void UpdateAnimations()
-    {
-        bool isWalking = agent.velocity.magnitude > 0.1f;
-        ani.SetBool("walk", isWalking);
     }
 }

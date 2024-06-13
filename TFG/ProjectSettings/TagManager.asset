@@ -12,6 +12,7 @@ TagManager:
   - cambioEscena
   - pilaAncha
   - Monster
+  - Waypoint
   layers:
   - Default
   - TransparentFX

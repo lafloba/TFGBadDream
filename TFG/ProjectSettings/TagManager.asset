@@ -13,6 +13,7 @@ TagManager:
   - pilaAncha
   - Monster
   - Waypoint
+  - puertaAccess
   layers:
   - Default
   - TransparentFX

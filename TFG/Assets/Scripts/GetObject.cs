@@ -8,7 +8,7 @@ public class GetObject : MonoBehaviour
     public GameObject pickedObject = null;
     public string mensaje;
 
-    public float tiempoDeMensaje = 2f;
+    public float tiempoDeMensaje = 1f;
     private float tiempoMostrandoMensaje = 0f;
     private bool mostrandoMensaje = false;
 
@@ -140,7 +140,15 @@ public class GetObject : MonoBehaviour
             ActivateFadeOut();
         }
 
-     
+        else if (other.gameObject.CompareTag("puertaAccess"))
+        {
+            
+            mensaje = "Pulsa ' F ' para abrir";
+            mostrandoMensaje = true;
+            tiempoMostrandoMensaje = 0f;
+        }
+
+
     }
 
 

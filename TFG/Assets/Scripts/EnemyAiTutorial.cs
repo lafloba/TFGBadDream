@@ -1,52 +1,201 @@
 ﻿using UnityEngine;
-using UnityEngine.AI;
 
 public class EnemyAiTutorial : MonoBehaviour
 {
     public Animator ani;
-
-    private int maxHealth = 100;
+    public int maxHealth = 100;
     private int currentHealth;
 
-    public Transform[] patrolPoints;
-    public int targetPoint;
-    public float speed;
+    public float moveSpeed = 2f;
+    public float chaseSpeed = 4f; // Velocidad de persecución
+    public float changeDirectionTime = 3f;
+    public float obstacleDetectionRange = 2f;
+    public float detectionRange = 10f; // Rango de detección del jugador
+    public float stopChasingDistance = 15f; // Distancia para dejar de perseguir
+    public LayerMask obstacleLayer;
+
+    private Vector3 moveDirection;
+    private float timeSinceLastDirectionChange;
+    private float timeUntilNextDirectionChange = 0f;
+    private bool isChasingPlayer = false; // Estado de persecución
+
+    // Variables para la fase de preparación
+    public float preparationDuration = 0.5f; // Duración de la fase de preparación
+    private float preparationStartTime;
+    private bool isInPreparationPhase = false;
+
+    // Referencia al jugador
+    private Transform player;
 
     void Start()
     {
         ani = GetComponent<Animator>();
         currentHealth = maxHealth;
 
-        targetPoint = 0;
+        // Encuentra el jugador por su nombre o etiqueta específica (en este caso, "Artie")
+        player = GameObject.Find("Artie").transform;
+
+        if (player == null)
+        {
+            Debug.LogError("Player GameObject not found! Make sure it exists and is named 'Artie'.");
+        }
+
+        ChangeMoveDirection(); // Cambia la dirección inicial del enemigo
+        ani.SetBool("walk", false); // Inicia la animación de movimiento
     }
 
     void Update()
     {
-        transform.position = Vector3.MoveTowards(transform.position, patrolPoints[targetPoint].position, speed * Time.deltaTime);
-        // Calcular la dirección hacia el siguiente punto de patrulla
-        Vector3 directionToTarget = patrolPoints[targetPoint].position - transform.position;
-        Quaternion rotationToTarget = Quaternion.LookRotation(directionToTarget);
-
-        // Rotar el personaje para que siempre mire hacia adelante
-        transform.rotation = Quaternion.Slerp(transform.rotation, rotationToTarget, speed * Time.deltaTime);
-
-        // Controlar la animación de caminar basada en la velocidad del personaje
-        if (speed > 0.1f)
+        if (!IsInPreparationPhase())
         {
-            ani.SetBool("walk", true); // Asume que "IsWalking" es el parámetro booleano para la animación de caminar
+            // Verificar si el jugador está en el rango de detección
+            if (CanSeePlayer())
+            {
+                Debug.Log("Can see player!");
+                isChasingPlayer = true;
+                moveDirection = (player.position - transform.position).normalized; // Perseguir al jugador
+            }
+            else if (isChasingPlayer && Vector3.Distance(transform.position, player.position) > stopChasingDistance)
+            {
+                Debug.Log("Player out of range, stop chasing.");
+                isChasingPlayer = false; // Dejar de perseguir al jugador si está demasiado lejos
+            }
+
+            // Movimiento y cambio de dirección
+            if (isChasingPlayer)
+            {
+                // Perseguir al jugador con velocidad de persecución
+                transform.Translate(moveDirection * chaseSpeed * Time.deltaTime, Space.World);
+            }
+            else
+            {
+                // Movimiento aleatorio con velocidad normal
+                if (!IsObstacleInFront())
+                {
+                    transform.Translate(moveDirection * moveSpeed * Time.deltaTime, Space.World);
+                }
+                else
+                {
+                    ChangeMoveDirection(); // Cambiar la dirección de movimiento al detectar un obstáculo
+                }
+
+                timeSinceLastDirectionChange += Time.deltaTime;
+
+                if (timeSinceLastDirectionChange >= changeDirectionTime && timeUntilNextDirectionChange <= 0f)
+                {
+                    ChangeMoveDirection(); // Cambiar la dirección de movimiento
+                }
+                else if (timeUntilNextDirectionChange > 0f)
+                {
+                    timeUntilNextDirectionChange -= Time.deltaTime;
+                }
+            }
+
+            bool isMoving = moveDirection != Vector3.zero;
+            ani.SetBool("walk", isMoving); // Actualizar la animación basada en si el enemigo está moviéndose
+
+            // Rotar al enemigo en la dirección de movimiento
+            if (isMoving)
+            {
+                RotateTowardsMovementDirection();
+            }
         }
         else
         {
-            ani.SetBool("walk", false);
+            ani.SetBool("walk", false); // Detener la animación de movimiento cuando se detiene
         }
     }
 
+    void ChangeMoveDirection()
+    {
+        Vector3 newDirection = Vector3.zero;
+        do
+        {
+            newDirection = new Vector3(Random.Range(-1f, 1f), 0, Random.Range(-1f, 1f)).normalized;
+        } while (Physics.SphereCast(transform.position, 0.5f, newDirection, out _, obstacleDetectionRange, obstacleLayer));
 
+        moveDirection = newDirection;
+        timeSinceLastDirectionChange = 0f;
+        timeUntilNextDirectionChange = changeDirectionTime;
+
+        // Configurar la fase de preparación
+        preparationStartTime = Time.time;
+        isInPreparationPhase = true;
+    }
+
+    bool IsInPreparationPhase()
+    {
+        return isInPreparationPhase && Time.time < preparationStartTime + preparationDuration;
+    }
+
+    void FixedUpdate()
+    {
+        if (IsInPreparationPhase())
+        {
+            float rotationSpeed = 500f; // Velocidad de rotación
+            Vector3 correctedDirection = new Vector3(moveDirection.x, 0, moveDirection.z).normalized;
+            if (correctedDirection.sqrMagnitude > 0.01f) // Verifica que el vector no sea casi nulo
+            {
+                Quaternion targetRotation = Quaternion.LookRotation(correctedDirection, Vector3.up);
+                transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.fixedDeltaTime);
+            }
+
+            // Comprueba si la fase de preparación ha finalizado
+            if (Time.time >= preparationStartTime + preparationDuration)
+            {
+                isInPreparationPhase = false;
+                // Reanudar el movimiento
+                moveDirection = correctedDirection.normalized;
+            }
+        }
+    }
+
+    void RotateTowardsMovementDirection()
+    {
+        // Rotar al enemigo en la dirección de movimiento
+        if (moveDirection != Vector3.zero)
+        {
+            Quaternion targetRotation = Quaternion.LookRotation(moveDirection);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * moveSpeed);
+        }
+    }
+
+    bool IsObstacleInFront()
+    {
+        // Usar SphereCast para detectar obstáculos
+        return Physics.SphereCast(transform.position, 0.5f, transform.forward, out _, obstacleDetectionRange, obstacleLayer);
+    }
+
+    bool CanSeePlayer()
+    {
+        // Verificar si el jugador está dentro del rango de detección
+        if (Vector3.Distance(transform.position, player.position) <= detectionRange)
+        {
+            Vector3 directionToPlayer = (player.position - transform.position).normalized;
+
+            // Raycast para verificar si hay obstáculos entre el enemigo y el jugador
+            RaycastHit hit;
+            if (Physics.Raycast(transform.position, directionToPlayer, out hit, detectionRange, obstacleLayer))
+            {
+                // Si el rayo golpea un objeto en la capa de obstáculos, no puede ver al jugador
+                if (!hit.collider.CompareTag("Player"))
+                {
+                    Debug.Log("Obstacle between enemy and player: " + hit.collider.gameObject.name);
+                    return false; // Hay un obstáculo entre el enemigo y el jugador
+                }
+            }
+
+            Debug.Log("Player detected!");
+            return true; // El jugador está dentro del rango de detección y visible
+        }
+
+        return false; // El jugador no está dentro del rango de detección
+    }
 
     public void TakeDamage(int damage)
     {
         currentHealth -= damage;
-        Debug.Log("Monster hit by flashlight Remaining health: " + currentHealth);
+        Debug.Log("Monster hit by flashlight. Remaining health: " + currentHealth);
 
         if (currentHealth <= 0)
         {
@@ -57,24 +206,18 @@ public class EnemyAiTutorial : MonoBehaviour
     public void Die()
     {
         Debug.Log("Monster has died!");
+        ani.SetBool("walk", false);
         Destroy(gameObject);
     }
 
-    void OnTriggerEnter(Collider other)
+    void OnDrawGizmos()
     {
-        if (other.gameObject.CompareTag("Waypoint")) // Asegúrate de que los waypoints tengan el tag "Waypoint"
-        {
-            IncreaseTargetInt();
-        }
-    }
+        Gizmos.color = Color.red;
+        Gizmos.DrawRay(transform.position, transform.forward * obstacleDetectionRange);
+        Gizmos.DrawRay(transform.position, transform.right * obstacleDetectionRange);
+        Gizmos.DrawRay(transform.position, -transform.right * obstacleDetectionRange);
 
-    void IncreaseTargetInt()
-    {
-        targetPoint++;
-        Debug.Log("IncreaseTargetInt ");
-        if (targetPoint >= patrolPoints.Length)
-        {
-            targetPoint = 0;
-        }
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireSphere(transform.position, detectionRange); // Visualizar el rango de detección del jugador
     }
 }

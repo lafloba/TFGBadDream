@@ -811,7 +811,7 @@ RectTransform:
   - {fileID: 869262883}
   - {fileID: 154704086}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -885,7 +885,7 @@ Light:
   serializedVersion: 10
   m_Type: 2
   m_Shape: 0
-  m_Color: {r: 0.8962264, g: 0.64398235, b: 0.2739409, a: 1}
+  m_Color: {r: 0.8980392, g: 0.27450976, b: 0.27450976, a: 1}
   m_Intensity: 0.02
   m_Range: 10
   m_SpotAngle: 30
@@ -1213,7 +1213,7 @@ RectTransform:
   m_Children:
   - {fileID: 1822490216}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -1971,7 +1971,7 @@ RectTransform:
   m_Children:
   - {fileID: 1604854211}
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -2508,9 +2508,17 @@ MonoBehaviour:
     no lo desaproveches
   - Esta pila que acabas de coger es muy debil, no aguanta mucho encendida
   - Por lo que tienes que aprovechar cuando si lo esta para herir al monstruo
+  - "Vamos prueba. Pulsa \" C \" para equiparla y ataca. Pero recuerda, no est\xE9s
+    muy cerca."
+  - "\xBFVes? No ha sido tan dificil. Vamos a proba pero ahora con otro tipo de bateria."
+  - "Esta bater\xEDa es mas potente que la anterior peroclaro, dura menos."
+  - Ahora vas a tener el placer de poder comprobarlo. Toma
+  - ufbsaui
   backgroundMusic: {fileID: 1283128717}
   tutorialPanel: {fileID: 1604854210}
   pilafina: {fileID: 227013286}
+  monster: {fileID: 805410561}
+  pilaancha: {fileID: 1335726022}
 --- !u!4 &988880323
 Transform:
   m_ObjectHideFlags: 0
@@ -2524,7 +2532,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1124589596
 GameObject:
@@ -2925,7 +2933,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: fea06ae0b53ba20428f4074eee6da19f,
         type: 3}
       propertyPath: m_RootOrder
-      value: 9
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: fea06ae0b53ba20428f4074eee6da19f,
         type: 3}
@@ -3127,7 +3135,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1312112522
 PrefabInstance:
@@ -3540,7 +3548,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 6452f0ce3898dd04a8c8ce6be833fc97,
         type: 3}
       propertyPath: m_RootOrder
-      value: 10
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 6452f0ce3898dd04a8c8ce6be833fc97,
         type: 3}
@@ -3839,73 +3847,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1411873903}
   m_CullTransparentMesh: 1
---- !u!1 &1466093912
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1466093914}
-  - component: {fileID: 1466093913}
-  - component: {fileID: 1466093915}
-  m_Layer: 10
-  m_Name: Collide
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!65 &1466093913
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1466093912}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 4, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!4 &1466093914
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1466093912}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.28, y: 0.68, z: 1.66}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1466093915
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1466093912}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8dedc7d201a69d444869cd7dac515c56, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemyToActivate: {fileID: 1473461684}
 --- !u!1 &1473461684
 GameObject:
   m_ObjectHideFlags: 0
@@ -3921,7 +3862,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1473461685
 Transform:
   m_ObjectHideFlags: 0
@@ -4375,7 +4316,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1705048169 stripped
 GameObject:
@@ -4446,6 +4387,7 @@ MonoBehaviour:
   blanketAttachPoint: {fileID: 2117707551}
   blanketOffset: {x: 0, y: 0, z: 0}
   blanketRotation: {x: 0, y: 0, z: 0}
+  customFont: {fileID: 12800000, guid: b7767c58b6f22f64fa09cc0f99f22b0f, type: 3}
 --- !u!1 &1822490215
 GameObject:
   m_ObjectHideFlags: 0

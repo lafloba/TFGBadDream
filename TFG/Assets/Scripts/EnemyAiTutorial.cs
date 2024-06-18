@@ -26,6 +26,7 @@ public class EnemyAiTutorial : MonoBehaviour
 
     // Referencia al jugador
     private Transform player;
+    private EquipBlanket equipBlanket; // Referencia al script EquipBlanket
 
     void Start()
     {
@@ -38,6 +39,14 @@ public class EnemyAiTutorial : MonoBehaviour
         if (player == null)
         {
             Debug.LogError("Player GameObject not found! Make sure it exists and is named 'Artie'.");
+        }
+        else
+        {
+            equipBlanket = player.GetComponent<EquipBlanket>();
+            if (equipBlanket == null)
+            {
+                Debug.LogError("EquipBlanket script not found on player GameObject.");
+            }
         }
 
         ChangeMoveDirection(); // Cambia la dirección inicial del enemigo
@@ -168,6 +177,13 @@ public class EnemyAiTutorial : MonoBehaviour
 
     bool CanSeePlayer()
     {
+        // Verificar si la manta está equipada
+        if (equipBlanket != null && equipBlanket.IsBlanketEquipped())
+        {
+            Debug.Log("Player is invisible because the blanket is equipped.");
+            return false; // El jugador es invisible si la manta está equipada
+        }
+
         // Verificar si el jugador está dentro del rango de detección
         if (Vector3.Distance(transform.position, player.position) <= detectionRange)
         {

@@ -18,6 +18,7 @@ public class EnemyAiTutorial : MonoBehaviour
     private float timeSinceLastDirectionChange;
     private float timeUntilNextDirectionChange = 0f;
     private bool isChasingPlayer = false; // Estado de persecución
+    private bool isCollidingWithPlayer = false;
 
     // Variables para la fase de preparación
     public float preparationDuration = 0.5f; // Duración de la fase de preparación
@@ -55,7 +56,7 @@ public class EnemyAiTutorial : MonoBehaviour
 
     void Update()
     {
-        if (!IsInPreparationPhase())
+        if (!IsInPreparationPhase() && !isCollidingWithPlayer) // Asegurarse de que el enemigo no se mueva si está colisionando con el jugador
         {
             // Verificar si el jugador está en el rango de detección
             if (CanSeePlayer())
@@ -236,4 +237,33 @@ public class EnemyAiTutorial : MonoBehaviour
         Gizmos.color = Color.blue;
         Gizmos.DrawWireSphere(transform.position, detectionRange); // Visualizar el rango de detección del jugador
     }
+
+    void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            isCollidingWithPlayer = true;
+            ani.SetBool("walk", false); // Detener la animación de caminar
+            Debug.Log("Enemy collided with player and stopped.");
+        }
+    }
+
+    void OnCollisionStay(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            isCollidingWithPlayer = true;
+            ani.SetBool("walk", false); // Asegurarse de que la animación de caminar esté detenida
+        }
+    }
+
+    void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            isCollidingWithPlayer = false;
+            Debug.Log("Enemy stopped colliding with player and resumed movement.");
+        }
+    }
+
 }

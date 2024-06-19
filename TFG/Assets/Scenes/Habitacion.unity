@@ -2594,9 +2594,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 1029189867}
   offset: {x: 0, y: 0, z: 0}
-  cameraSpeed: 10
+  smoothTime: 0.3
   rangoXMin: -0.55
   rangoXMax: 0.5
+  rangoZMin: -0.55
+  rangoZMax: 0.5
 --- !u!1001 &1216034814
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3570,7 +3572,7 @@ MonoBehaviour:
   contadorLlave: 0
   pickedObject: {fileID: 0}
   mensaje: 
-  tiempoDeMensaje: 3
+  tiempoDeMensaje: 1
   tagVent: ventilacion
   tagCambioEscena: cambioEscena
   customFont: {fileID: 12800000, guid: b7767c58b6f22f64fa09cc0f99f22b0f, type: 3}

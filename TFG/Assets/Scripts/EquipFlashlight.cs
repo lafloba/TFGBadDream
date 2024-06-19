@@ -141,6 +141,18 @@ public class EquipFlashlight : MonoBehaviour
                 Ray ray = new Ray(flashlightLight.transform.position, flashlightLight.transform.forward);
                 RaycastHit hit;
 
+                // Usar Raycast para detectar enemigos directamente delante de la linterna
+                if (Physics.Raycast(ray, out hit, maxDetectionDistance))
+                {
+                    Debug.DrawRay(ray.origin, ray.direction * maxDetectionDistance, Color.green); // Depuración del rayo
+
+                    if (hit.collider.CompareTag("Monster"))
+                    {
+                        HandleMonsterHit(hit.collider);
+                        return; // Salir si el monstruo es detectado
+                    }
+                }
+
                 // Usar SphereCast para detectar enemigos en un área más amplia
                 if (Physics.SphereCast(ray, detectionRadius, out hit, maxDetectionDistance))
                 {
@@ -148,27 +160,31 @@ public class EquipFlashlight : MonoBehaviour
 
                     if (hit.collider.CompareTag("Monster"))
                     {
-                        Debug.Log("Monstruo detectado."); // Depuración de la detección del monstruo
-
-                        // Añadir lógica para dañar al monstruo
-                        EnemyAiTutorial monster = hit.collider.GetComponent<EnemyAiTutorial>();
-                        if (monster != null)
-                        {
-                            // Comprobar la distancia entre la linterna y el monstruo
-                            float distanceToMonster = Vector3.Distance(flashlightLight.transform.position, monster.transform.position);
-                            if (distanceToMonster <= maxDetectionDistance)
-                            {
-                                monster.TakeDamage(flashlightDamage);
-                                lastAttackTime = Time.time; // Actualizar el tiempo del último ataque
-                                Debug.Log("Atacó al monstruo con " + flashlightDamage + " de daño. Próximo ataque disponible en " + attackCooldown + " segundos.");
-                            }
-                        }
+                        HandleMonsterHit(hit.collider);
+                        return; // Salir si el monstruo es detectado
                     }
                 }
-                else
-                {
-                    Debug.Log("No se detectó ningún objeto en el rango de la linterna."); // Depuración de la falta de detección
-                }
+
+                Debug.Log("No se detectó ningún objeto en el rango de la linterna."); // Depuración de la falta de detección
+            }
+        }
+    }
+
+    void HandleMonsterHit(Collider monsterCollider)
+    {
+        Debug.Log("Monstruo detectado."); // Depuración de la detección del monstruo
+
+        // Añadir lógica para dañar al monstruo
+        EnemyAiTutorial monster = monsterCollider.GetComponent<EnemyAiTutorial>();
+        if (monster != null)
+        {
+            // Comprobar la distancia entre la linterna y el monstruo
+            float distanceToMonster = Vector3.Distance(flashlightLight.transform.position, monster.transform.position);
+            if (distanceToMonster <= maxDetectionDistance)
+            {
+                monster.TakeDamage(flashlightDamage);
+                lastAttackTime = Time.time; // Actualizar el tiempo del último ataque
+                Debug.Log("Atacó al monstruo con " + flashlightDamage + " de daño. Próximo ataque disponible en " + attackCooldown + " segundos.");
             }
         }
     }

@@ -26,7 +26,6 @@ public class GetObject : MonoBehaviour
     public int contadorPilaFina = 0;
     public int contadorPilaAncha = 0;
 
-
     void Update()
     {
         if (pickedObject != null)
@@ -100,6 +99,54 @@ public class GetObject : MonoBehaviour
                     }
                 }
             }
+
+            else if (contadorLlave > 0 && !ventActive)
+            {
+                 mensaje = "Pulsa ' F ' para abrir con la llave";
+                 mostrandoMensaje = true;
+                 tiempoMostrandoMensaje = 0f;
+
+                 if (Input.GetKeyDown("f"))
+                 {
+                    // Asegúrate de actualizar el mensaje antes de ocultarlo
+                    mensaje = ""; // Limpiar el mensaje
+                    mostrandoMensaje = false;
+         
+                    ventActive = false;
+
+                    GameObject objetoConGravedad = GameObject.FindGameObjectWithTag(tagVent);
+                    if (objetoConGravedad != null)
+                    {
+                        Rigidbody rb = objetoConGravedad.GetComponent<Rigidbody>();
+                        if (rb != null)
+                        {
+                            rb.isKinematic = true;
+                        }
+                    }
+                    Destroy(other.gameObject);
+
+                    ActivateFadeOutToCorridor();
+                }
+            }
+        }
+
+        else if (other.gameObject.CompareTag("key"))
+        {
+            mensaje = "Pulsa ' F ' para recoger la llave";
+            mostrandoMensaje = true;
+            tiempoMostrandoMensaje = 0f;
+
+            if (Input.GetKey("f"))
+            {
+                contadorLlave++;
+                Destroy(other.gameObject);
+                mensaje = "Llave recogida. Volviendo a la habitación...";
+                mostrandoMensaje = true;
+                tiempoMostrandoMensaje = 0f;
+
+                // Iniciar la transición de regreso a la habitación
+                ActivateFadeOutToRoom();
+            }
         }
 
         else if (other.gameObject.CompareTag("pila"))
@@ -142,15 +189,11 @@ public class GetObject : MonoBehaviour
 
         else if (other.gameObject.CompareTag("puertaAccess"))
         {
-            
             mensaje = "Pulsa ' F ' para abrir";
             mostrandoMensaje = true;
             tiempoMostrandoMensaje = 0f;
         }
-
-
     }
-
 
     void OnGUI()
     {
@@ -178,6 +221,30 @@ public class GetObject : MonoBehaviour
     void LoadNextScene()
     {
         SceneManager.LoadScene("Hall");
+        isTransitioning = false;
+    }
+
+    public void ActivateFadeOutToRoom()
+    {
+        aniFade.SetBool("fade", true);
+        Invoke("LoadRoomScene", 1.5f);
+    }
+
+    void LoadRoomScene()
+    {
+        SceneManager.LoadScene("Habitacion");
+        isTransitioning = false;
+    }
+
+    public void ActivateFadeOutToCorridor()
+    {
+        aniFade.SetBool("fade", true);
+        Invoke("LoadCorridorScene", 1.5f);
+    }
+
+    void LoadCorridorScene()
+    {
+        SceneManager.LoadScene("Corridor");
         isTransitioning = false;
     }
 

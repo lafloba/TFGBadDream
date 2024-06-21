@@ -3,12 +3,12 @@
   "WorkspaceRootPath": "C:\\Users\\laura\\Documents\\GitHub\\TFGBadDream\\TFG\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{62873BB6-A352-5450-430A-56E3FCEBDD74}|Assembly-CSharp.csproj|C:\\Users\\laura\\Documents\\GitHub\\TFGBadDream\\TFG\\assets\\scripts\\getobject.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{62873BB6-A352-5450-430A-56E3FCEBDD74}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\getobject.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{62873BB6-A352-5450-430A-56E3FCEBDD74}|Assembly-CSharp.csproj|C:\\Users\\laura\\Documents\\GitHub\\TFGBadDream\\TFG\\assets\\scripts\\tutorialtextmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{62873BB6-A352-5450-430A-56E3FCEBDD74}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\tutorialtextmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{62873BB6-A352-5450-430A-56E3FCEBDD74}|Assembly-CSharp.csproj|c:\\users\\laura\\documents\\github\\tfgbaddream\\tfg\\assets\\scripts\\tutorialtextmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{62873BB6-A352-5450-430A-56E3FCEBDD74}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\tutorialtextmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{62873BB6-A352-5450-430A-56E3FCEBDD74}|Assembly-CSharp.csproj|c:\\users\\laura\\documents\\github\\tfgbaddream\\tfg\\assets\\scripts\\getobject.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{62873BB6-A352-5450-430A-56E3FCEBDD74}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\getobject.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{62873BB6-A352-5450-430A-56E3FCEBDD74}|Assembly-CSharp.csproj|C:\\Users\\laura\\Documents\\GitHub\\TFGBadDream\\TFG\\assets\\scripts\\controladorllave.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -22,30 +22,30 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "TutorialTextManager.cs",
               "DocumentMoniker": "C:\\Users\\laura\\Documents\\GitHub\\TFGBadDream\\TFG\\Assets\\Scripts\\TutorialTextManager.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\TutorialTextManager.cs",
               "ToolTip": "C:\\Users\\laura\\Documents\\GitHub\\TFGBadDream\\TFG\\Assets\\Scripts\\TutorialTextManager.cs",
               "RelativeToolTip": "Assets\\Scripts\\TutorialTextManager.cs",
-              "ViewState": "AQIAAA4BAAAAAAAAAAAYwB8BAAAAAAAA",
+              "ViewState": "AQIAAHgAAAAAAAAAAAAYwIMAAAApAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-06-20T15:03:39.318Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "GetObject.cs",
               "DocumentMoniker": "C:\\Users\\laura\\Documents\\GitHub\\TFGBadDream\\TFG\\Assets\\Scripts\\GetObject.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\GetObject.cs",
               "ToolTip": "C:\\Users\\laura\\Documents\\GitHub\\TFGBadDream\\TFG\\Assets\\Scripts\\GetObject.cs",
               "RelativeToolTip": "Assets\\Scripts\\GetObject.cs",
-              "ViewState": "AQIAAPUAAAAAAAAAAAA1wAsBAAAAAAAA",
+              "ViewState": "AQIAAPYAAAAAAAAAAAAQwAsBAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-06-20T10:44:11.537Z",
               "EditorCaption": ""

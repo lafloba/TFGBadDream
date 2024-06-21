@@ -27,6 +27,7 @@ public class TutorialTextManager : MonoBehaviour
     private int currentMessageIndex = 0;
     private bool spaceKeyBlocked = false;
     private bool endOfMessages = false;
+    private bool wasSpaceKeyPressedWhileInactive = false; // Agrega esta variable para rastrear si la tecla B fue presionada mientras el panel estaba inactivo
 
     void Start()
     {
@@ -115,19 +116,20 @@ public class TutorialTextManager : MonoBehaviour
 
     void Update()
     {
-        
-        
 
-        if (!endOfMessages && !tutorialPanel.activeSelf)
+
+
+        if (!tutorialPanel.activeSelf)
         {
-            // Mostrar el panel si pilafina es null y aún no hemos alcanzado el final de los mensajes
-            tutorialPanel.SetActive(true);
-            spaceKeyBlocked = false;
+            wasSpaceKeyPressedWhileInactive = Input.GetKeyDown(KeyCode.B); // Guarda si la tecla B fue presionada mientras el panel estaba inactivo
+        }
+        else
+        {
+            wasSpaceKeyPressedWhileInactive = false; // Reinicia el estado cuando el panel vuelve a ser visible
         }
 
-
         // Procesar entrada de teclado si la tecla espacio no está bloqueada
-        if (!spaceKeyBlocked && Input.GetKeyDown(KeyCode.Space))
+        if (!spaceKeyBlocked && !wasSpaceKeyPressedWhileInactive && Input.GetKeyDown(KeyCode.Space))
         {
             // Avanzar al siguiente mensaje si hay más
             if (currentMessageIndex < tutorialMessages.Count - 1)

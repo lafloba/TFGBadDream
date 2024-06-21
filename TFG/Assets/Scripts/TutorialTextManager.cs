@@ -26,7 +26,6 @@ public class TutorialTextManager : MonoBehaviour
 
     private int currentMessageIndex = 0;
     private bool spaceKeyBlocked = false;
-    private bool endOfMessages = false;
     private bool wasSpaceKeyPressedWhileInactive = false; // Agrega esta variable para rastrear si la tecla B fue presionada mientras el panel estaba inactivo
 
     void Start()
@@ -141,7 +140,6 @@ public class TutorialTextManager : MonoBehaviour
             {
                 // Si no hay más mensajes, ocultar el panel
                 tutorialPanel.SetActive(false);
-                endOfMessages = true;
 
                 // Reanudar el tiempo
                 Time.timeScale = 1f;
@@ -240,35 +238,35 @@ public class TutorialTextManager : MonoBehaviour
             }
         }
 
-        // Desactivar el panel en el mensaje 29, independientemente de la entrada del teclado
         if (currentMessageIndex == 29) // Asumiendo que el índice comienza desde 0
         {
             tutorialPanel.SetActive(false);
             spaceKeyBlocked = true; // Opcionalmente, bloquear el avance con la tecla espacio
+            if (pilafina1 != null)
+            {
+                pilafina1.SetActive(true);
+            }
 
-            // Activar el objeto "monstruo" y pila
-            if (monster2 != null || pilafina1 != null)
+            if (monster2 != null)
             {
                 monster2.SetActive(true);
-                pilafina1.SetActive(true);
             }
             else
             {
-                // Si el objeto "monstruo" es null, reactivar los mensajes
+                // Si el objeto "monster" es null, reactivar los mensajes
                 tutorialPanel.SetActive(true);
                 spaceKeyBlocked = false;
-
             }
         }
 
-        // Desactivar el panel en el mensaje 33, independientemente de la entrada del teclado
         if (currentMessageIndex == 33) // Asumiendo que el índice comienza desde 0
         {
             tutorialPanel.SetActive(false);
             spaceKeyBlocked = true; // Opcionalmente, bloquear el avance con la tecla espacio
 
-            // Activar el objeto "monstruo" y pila
-            if (monster3 != null || monster4 != null || monster5 != null)
+            // Activar el objeto "monstruo" y pila si existen
+            if (monster3 != null && monster4 != null && monster5 != null &&
+                pilafina2 != null && pilafina3 != null && pilaancha1 != null)
             {
                 monster3.SetActive(true);
                 monster4.SetActive(true);
@@ -277,12 +275,11 @@ public class TutorialTextManager : MonoBehaviour
                 pilafina3.SetActive(true);
                 pilaancha1.SetActive(true);
             }
-            else
+            else if(monster3 == null && monster4 == null && monster5 == null)
             {
-                // Si el objeto "monstruo" es null, reactivar los mensajes
+                // Al menos uno de los objetos es null, reactivar los mensajes
                 tutorialPanel.SetActive(true);
                 spaceKeyBlocked = false;
-
             }
         }
     }

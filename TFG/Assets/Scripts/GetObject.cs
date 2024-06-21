@@ -4,9 +4,9 @@ using UnityEngine.SceneManagement;
 public class GetObject : MonoBehaviour
 {
     public GameObject handPoint;
-    public int contadorLlave = 0;
     public GameObject pickedObject = null;
     public string mensaje;
+    public int contadorLlave = 0;
 
     public float tiempoDeMensaje = 1f;
     private float tiempoMostrandoMensaje = 0f;
@@ -22,7 +22,7 @@ public class GetObject : MonoBehaviour
     public GameObject fadePanel; // Referencia al panel de fade-out
     private bool isTransitioning = false; // Controla si se está realizando una transición de escena
 
-    // Variable pública para contar las veces que se ha destruido el objeto
+    // Variables públicas para contar las veces que se ha destruido el objeto
     public int contadorPilaFina = 0;
     public int contadorPilaAncha = 0;
 
@@ -40,6 +40,7 @@ public class GetObject : MonoBehaviour
                 pickedObject.GetComponent<Rigidbody>().isKinematic = false;
                 pickedObject.gameObject.transform.SetParent(null);
                 pickedObject = null;
+                
             }
         }
 
@@ -74,7 +75,7 @@ public class GetObject : MonoBehaviour
 
         else if (other.gameObject.CompareTag("puerta"))
         {
-            if (contadorLlave == 0 && !ventActive)
+            if (!ControladorLlave.Instance.IsKeyCollected() && !ventActive)
             {
                 mensaje = "Pulsa ' F ' para abrir";
                 mostrandoMensaje = true;
@@ -100,32 +101,15 @@ public class GetObject : MonoBehaviour
                 }
             }
 
-            else if (contadorLlave > 0 && !ventActive)
+            else if (ControladorLlave.Instance.IsKeyCollected() && !ventActive)
             {
-                 mensaje = "Pulsa ' F ' para abrir con la llave";
-                 mostrandoMensaje = true;
-                 tiempoMostrandoMensaje = 0f;
+                mensaje = "Pulsa ' F ' para abrir con la llave";
+                mostrandoMensaje = true;
+                tiempoMostrandoMensaje = 0f;
 
-                 if (Input.GetKeyDown("f"))
-                 {
-                    // Asegúrate de actualizar el mensaje antes de ocultarlo
-                    mensaje = ""; // Limpiar el mensaje
-                    mostrandoMensaje = false;
-         
-                    ventActive = false;
-
-                    GameObject objetoConGravedad = GameObject.FindGameObjectWithTag(tagVent);
-                    if (objetoConGravedad != null)
-                    {
-                        Rigidbody rb = objetoConGravedad.GetComponent<Rigidbody>();
-                        if (rb != null)
-                        {
-                            rb.isKinematic = true;
-                        }
-                    }
-                    Destroy(other.gameObject);
-
-                    ActivateFadeOutToCorridor();
+                if (Input.GetKeyDown("f"))
+                {
+                    AbrirPuertaConLlave(other.gameObject);
                 }
             }
         }
@@ -139,6 +123,7 @@ public class GetObject : MonoBehaviour
             if (Input.GetKey("f"))
             {
                 contadorLlave++;
+                ControladorLlave.Instance.SumarLlave(contadorLlave);
                 Destroy(other.gameObject);
                 mensaje = "Llave recogida. Volviendo a la habitación...";
                 mostrandoMensaje = true;
@@ -257,4 +242,26 @@ public class GetObject : MonoBehaviour
     {
         return contadorPilaAncha;
     }
-}
+
+        void AbrirPuertaConLlave(GameObject puerta)
+        {
+            // Asegúrate de actualizar el mensaje antes de ocultarlo
+            mensaje = ""; // Limpiar el mensaje
+            mostrandoMensaje = false;
+
+            ventActive = false;
+
+            GameObject objetoConGravedad = GameObject.FindGameObjectWithTag(tagVent);
+            if (objetoConGravedad != null)
+            {
+                Rigidbody rb = objetoConGravedad.GetComponent<Rigidbody>();
+                if (rb != null)
+                {
+                    rb.isKinematic = true;
+                }
+            }
+            Destroy(puerta);
+
+            ActivateFadeOutToCorridor();
+        }
+    }

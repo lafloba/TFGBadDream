@@ -115,12 +115,16 @@ public class TutorialTextManager : MonoBehaviour
 
     void Update()
     {
-        if (!endOfMessages && pilafina == null && !tutorialPanel.activeSelf)
+        
+        
+
+        if (!endOfMessages && !tutorialPanel.activeSelf)
         {
             // Mostrar el panel si pilafina es null y aún no hemos alcanzado el final de los mensajes
             tutorialPanel.SetActive(true);
             spaceKeyBlocked = false;
         }
+
 
         // Procesar entrada de teclado si la tecla espacio no está bloqueada
         if (!spaceKeyBlocked && Input.GetKeyDown(KeyCode.Space))
@@ -130,19 +134,6 @@ public class TutorialTextManager : MonoBehaviour
             {
                 currentMessageIndex++;
                 ShowMessage();
-
-                // Desactivar panel y bloquear tecla espacio después del mensaje 7
-                if (currentMessageIndex == 7)
-                {
-                    tutorialPanel.SetActive(false);
-                    spaceKeyBlocked = true;
-
-                    // Activar pilafina después del mensaje 7
-                    if (pilafina != null)
-                    {
-                        pilafina.SetActive(true);
-                    }
-                }
             }
             else
             {
@@ -164,6 +155,26 @@ public class TutorialTextManager : MonoBehaviour
                 {
                     key.SetActive(true);
                 }
+            }
+        }
+
+        // Desactivar panel y bloquear tecla espacio después del mensaje 7
+        if (currentMessageIndex == 7)
+        {
+            tutorialPanel.SetActive(false);
+            spaceKeyBlocked = true;
+
+            // Activar pilafina después del mensaje 7
+            if (pilafina != null)
+            {
+                pilafina.SetActive(true);
+            }
+            else
+            {
+                // Si el objeto "pilafina" es null, reactivar los mensajes
+                tutorialPanel.SetActive(true);
+                spaceKeyBlocked = false;
+
             }
         }
 
@@ -271,15 +282,6 @@ public class TutorialTextManager : MonoBehaviour
                 spaceKeyBlocked = false;
 
             }
-        }
-    }
-
-    public void OnPilafinaCollected()
-    {
-        // Destruir el objeto pilafina
-        if (pilafina != null)
-        {
-            Destroy(pilafina);
         }
     }
 }

@@ -20,4 +20,16 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Corridor.unity
     guid: 9d6ad2e5bb752524c99aa37246a76a4c
+  - enabled: 1
+    path: Assets/Scenes/Almacen.unity
+    guid: 96b869e0a93255e46a119816c79ec188
+  - enabled: 1
+    path: Assets/Scenes/Almacen 1.unity
+    guid: f5a268491210d5541bc495dd966975bc
+  - enabled: 1
+    path: Assets/Scenes/Habitacion 1.unity
+    guid: 626f9ab4de7fffc43bffe61b5538afcf
+  - enabled: 1
+    path: Assets/Scenes/Habitacion 2.unity
+    guid: bd8f64d4766dc394490b56f80819c736
   m_configObjects: {}

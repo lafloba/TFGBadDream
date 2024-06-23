@@ -10,8 +10,8 @@ public class EnemyAiTutorial : MonoBehaviour
     public float chaseSpeed = 4f; // Velocidad de persecución
     public float changeDirectionTime = 3f;
     public float obstacleDetectionRange = 2f;
-    public float detectionRange = 10f; // Rango de detección del jugador
-    public float stopChasingDistance = 15f; // Distancia para dejar de perseguir
+    public float detectionRange = 0.5f; // Rango de detección del jugador
+    public float stopChasingDistance = 0.25f; // Distancia para dejar de perseguir
     public LayerMask obstacleLayer;
 
     private Vector3 moveDirection;

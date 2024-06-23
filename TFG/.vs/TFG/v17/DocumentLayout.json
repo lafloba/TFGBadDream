@@ -3,16 +3,32 @@
   "WorkspaceRootPath": "C:\\Users\\laura\\Documents\\GitHub\\TFGBadDream\\TFG\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{62873BB6-A352-5450-430A-56E3FCEBDD74}|Assembly-CSharp.csproj|c:\\users\\laura\\documents\\github\\tfgbaddream\\tfg\\assets\\scripts\\tutorialtextmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{62873BB6-A352-5450-430A-56E3FCEBDD74}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\tutorialtextmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{62873BB6-A352-5450-430A-56E3FCEBDD74}|Assembly-CSharp.csproj|C:\\Users\\laura\\Documents\\GitHub\\TFGBadDream\\TFG\\assets\\scripts\\equipflashlight.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{62873BB6-A352-5450-430A-56E3FCEBDD74}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\equipflashlight.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{62873BB6-A352-5450-430A-56E3FCEBDD74}|Assembly-CSharp.csproj|C:\\Users\\laura\\Documents\\GitHub\\TFGBadDream\\TFG\\assets\\scripts\\getobject.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{62873BB6-A352-5450-430A-56E3FCEBDD74}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\getobject.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{62873BB6-A352-5450-430A-56E3FCEBDD74}|Assembly-CSharp.csproj|c:\\users\\laura\\documents\\github\\tfgbaddream\\tfg\\assets\\scripts\\playercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{62873BB6-A352-5450-430A-56E3FCEBDD74}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\playercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{62873BB6-A352-5450-430A-56E3FCEBDD74}|Assembly-CSharp.csproj|C:\\Users\\laura\\Documents\\GitHub\\TFGBadDream\\TFG\\assets\\scripts\\level1manager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{62873BB6-A352-5450-430A-56E3FCEBDD74}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\level1manager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{62873BB6-A352-5450-430A-56E3FCEBDD74}|Assembly-CSharp.csproj|C:\\Users\\laura\\Documents\\GitHub\\TFGBadDream\\TFG\\assets\\scripts\\controladorllave.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{62873BB6-A352-5450-430A-56E3FCEBDD74}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\controladorllave.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{62873BB6-A352-5450-430A-56E3FCEBDD74}|Assembly-CSharp.csproj|C:\\Users\\laura\\Documents\\GitHub\\TFGBadDream\\TFG\\assets\\scripts\\controladoramuleto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{62873BB6-A352-5450-430A-56E3FCEBDD74}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\controladoramuleto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{62873BB6-A352-5450-430A-56E3FCEBDD74}|Assembly-CSharp.csproj|C:\\Users\\laura\\Documents\\GitHub\\TFGBadDream\\TFG\\assets\\scripts\\controladorescenaspasillo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{62873BB6-A352-5450-430A-56E3FCEBDD74}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\controladorescenaspasillo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -22,19 +38,82 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "TutorialTextManager.cs",
-              "DocumentMoniker": "C:\\Users\\laura\\Documents\\GitHub\\TFGBadDream\\TFG\\Assets\\Scripts\\TutorialTextManager.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\TutorialTextManager.cs",
-              "ToolTip": "C:\\Users\\laura\\Documents\\GitHub\\TFGBadDream\\TFG\\Assets\\Scripts\\TutorialTextManager.cs",
-              "RelativeToolTip": "Assets\\Scripts\\TutorialTextManager.cs",
-              "ViewState": "AQIAAAYBAAAAAAAAAAAYwBUBAABGAAAA",
+              "DocumentIndex": 5,
+              "Title": "ControladorAmuleto.cs",
+              "DocumentMoniker": "C:\\Users\\laura\\Documents\\GitHub\\TFGBadDream\\TFG\\Assets\\Scripts\\ControladorAmuleto.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\ControladorAmuleto.cs",
+              "ToolTip": "C:\\Users\\laura\\Documents\\GitHub\\TFGBadDream\\TFG\\Assets\\Scripts\\ControladorAmuleto.cs",
+              "RelativeToolTip": "Assets\\Scripts\\ControladorAmuleto.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABgAAAAFAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-20T15:03:39.318Z",
+              "WhenOpened": "2024-06-23T09:54:08.347Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "EquipFlashlight.cs",
+              "DocumentMoniker": "C:\\Users\\laura\\Documents\\GitHub\\TFGBadDream\\TFG\\Assets\\Scripts\\EquipFlashlight.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\EquipFlashlight.cs",
+              "ToolTip": "C:\\Users\\laura\\Documents\\GitHub\\TFGBadDream\\TFG\\Assets\\Scripts\\EquipFlashlight.cs",
+              "RelativeToolTip": "Assets\\Scripts\\EquipFlashlight.cs",
+              "ViewState": "AQIAAFgAAAAAAAAAAAAIwHIAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-23T09:20:37.815Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Level1manager.cs",
+              "DocumentMoniker": "C:\\Users\\laura\\Documents\\GitHub\\TFGBadDream\\TFG\\Assets\\Scripts\\Level1manager.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Level1manager.cs",
+              "ToolTip": "C:\\Users\\laura\\Documents\\GitHub\\TFGBadDream\\TFG\\Assets\\Scripts\\Level1manager.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Level1manager.cs",
+              "ViewState": "AQIAABUAAAAAAAAAAAA1wCEAAAA1AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-22T18:15:19.696Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "PlayerController.cs",
+              "DocumentMoniker": "C:\\Users\\laura\\Documents\\GitHub\\TFGBadDream\\TFG\\Assets\\Scripts\\PlayerController.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\PlayerController.cs",
+              "ToolTip": "C:\\Users\\laura\\Documents\\GitHub\\TFGBadDream\\TFG\\Assets\\Scripts\\PlayerController.cs",
+              "RelativeToolTip": "Assets\\Scripts\\PlayerController.cs",
+              "ViewState": "AQIAACoAAAAAAAAAAAAuwDUAAAB8AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-22T18:01:55.05Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "ControladorEscenasPasillo.cs",
+              "DocumentMoniker": "C:\\Users\\laura\\Documents\\GitHub\\TFGBadDream\\TFG\\Assets\\Scripts\\ControladorEscenasPasillo.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\ControladorEscenasPasillo.cs",
+              "ToolTip": "C:\\Users\\laura\\Documents\\GitHub\\TFGBadDream\\TFG\\Assets\\Scripts\\ControladorEscenasPasillo.cs",
+              "RelativeToolTip": "Assets\\Scripts\\ControladorEscenasPasillo.cs",
+              "ViewState": "AQIAABYAAAAAAAAAAAAiwB4AAAAFAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-22T15:25:47.081Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "ControladorLlave.cs",
+              "DocumentMoniker": "C:\\Users\\laura\\Documents\\GitHub\\TFGBadDream\\TFG\\Assets\\Scripts\\ControladorLlave.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\ControladorLlave.cs",
+              "ToolTip": "C:\\Users\\laura\\Documents\\GitHub\\TFGBadDream\\TFG\\Assets\\Scripts\\ControladorLlave.cs",
+              "RelativeToolTip": "Assets\\Scripts\\ControladorLlave.cs",
+              "ViewState": "AQIAABIAAAAAAAAAAAAmwBkAAAAhAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-22T15:12:50.781Z",
               "EditorCaption": ""
             },
             {
@@ -45,21 +124,10 @@
               "RelativeDocumentMoniker": "Assets\\Scripts\\GetObject.cs",
               "ToolTip": "C:\\Users\\laura\\Documents\\GitHub\\TFGBadDream\\TFG\\Assets\\Scripts\\GetObject.cs",
               "RelativeToolTip": "Assets\\Scripts\\GetObject.cs",
-              "ViewState": "AQIAAJIAAAAAAAAAAAAIwJ8AAAANAAAA",
+              "ViewState": "AQIAAH0BAAAAAAAAAAAYwJwBAAAmAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-20T10:44:11.537Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "ControladorLlave.cs",
-              "DocumentMoniker": "C:\\Users\\laura\\Documents\\GitHub\\TFGBadDream\\TFG\\Assets\\Scripts\\ControladorLlave.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\ControladorLlave.cs",
-              "ToolTip": "C:\\Users\\laura\\Documents\\GitHub\\TFGBadDream\\TFG\\Assets\\Scripts\\ControladorLlave.cs",
-              "RelativeToolTip": "Assets\\Scripts\\ControladorLlave.cs",
-              "ViewState": "AQIAAA0AAAAAAAAAAAAQwB8AAAAFAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-20T10:44:05.681Z"
+              "WhenOpened": "2024-06-22T14:31:08.557Z",
+              "EditorCaption": ""
             }
           ]
         }

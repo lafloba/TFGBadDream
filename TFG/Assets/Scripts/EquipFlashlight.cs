@@ -1,4 +1,5 @@
 using UnityEngine;
+using TMPro; // Necesario para acceder a TextMeshProUGUI
 
 public class EquipFlashlight : MonoBehaviour
 {
@@ -9,18 +10,23 @@ public class EquipFlashlight : MonoBehaviour
     public Vector3 flashlightRotation = new Vector3(90, 0, 0); // Ajustar la rotación de la linterna
     public Animator animator; // Añadir una referencia al Animator
     public float attackCooldownFina = 2.0f; // Tiempo de enfriamiento entre ataques para pila fina
-    public float attackCooldownAncha = 1.5f; // Tiempo de enfriamiento entre ataques para pila ancha
+    public float attackCooldownAncha = 0.5f; // Tiempo de enfriamiento entre ataques para pila ancha
     public float detectionRadius = 0.5f; // Radio de detección del SphereCast
     public float maxDetectionDistance = 10f; // Distancia máxima de detección
+    public float pilaAnchaIntensity = 5.0f; // Intensidad de la linterna para pila ancha
+
+    public TMP_Text remainingTimeText; // Referencia al componente TextMeshProUGUI para mostrar los segundos restantes
 
     private bool isEquipped = false;
     private GetObject getObjectScript;
     private float equipDuration = 0f;
+    private float remainingEquipTime = 0f;
     private float equipStartTime = 0f;
     private Light flashlightLight;
     private float lastAttackTime = -9999f; // Tiempo del último ataque inicializado en un valor muy bajo
     private int flashlightDamage = 20; // Daño de la linterna (se ajustará según la pila)
     private float attackCooldown = 0.9f; // Tiempo de enfriamiento actual (se ajustará según la pila)
+    private float defaultIntensity = 1.0f; // Intensidad predeterminada de la linterna
 
     // Tipos de pilas
     private enum BatteryType { None, PilaFina, PilaAncha }
@@ -46,19 +52,49 @@ public class EquipFlashlight : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.C))
         {
-            if (getObjectScript.contadorPilaFina > 0)
+            if (isEquipped)
             {
-                Equip(10f, BatteryType.PilaFina);
-                getObjectScript.contadorPilaFina--;
-            }
-            else if (getObjectScript.contadorPilaAncha > 0)
-            {
-                Equip(5f, BatteryType.PilaAncha);
-                getObjectScript.contadorPilaAncha--;
+                remainingEquipTime = equipDuration - (Time.time - equipStartTime);
+                Unequip();
             }
             else
             {
-                Debug.Log("No hay pila disponible para equipar la linterna.");
+                if (remainingEquipTime > 0f)
+                {
+                    Equip(remainingEquipTime, currentBatteryType);
+                }
+                else if (getObjectScript.contadorPilaFina > 0)
+                {
+                    Equip(10f, BatteryType.PilaFina);
+                    getObjectScript.contadorPilaFina--;
+                }
+                else if (getObjectScript.contadorPilaAncha > 0)
+                {
+                    Equip(5f, BatteryType.PilaAncha);
+                    getObjectScript.contadorPilaAncha--;
+                }
+                else
+                {
+                    Debug.Log("No hay pila disponible para equipar la linterna.");
+                }
+            }
+        }
+
+        // Actualizar el tiempo restante solo si la linterna está equipada y la duración es mayor a cero
+        if (isEquipped && equipDuration > 0f)
+        {
+            remainingEquipTime = equipDuration - (Time.time - equipStartTime);
+
+            // Asegurarse de que remainingEquipTime no sea negativo
+            if (remainingEquipTime < 0f)
+            {
+                remainingEquipTime = 0f;
+            }
+
+            // Actualizar el texto con los segundos restantes
+            if (remainingTimeText != null)
+            {
+                remainingTimeText.text = "Tiempo restante: " + Mathf.CeilToInt(remainingEquipTime).ToString() + "s";
             }
         }
 
@@ -66,6 +102,7 @@ public class EquipFlashlight : MonoBehaviour
         if (isEquipped && Time.time - equipStartTime >= equipDuration)
         {
             Unequip();
+            remainingEquipTime = 0f;
         }
 
         // Comprobar si la linterna está equipada y usarla para atacar al monstruo
@@ -75,7 +112,9 @@ public class EquipFlashlight : MonoBehaviour
         }
     }
 
-    void Equip(float duration, BatteryType batteryType)
+
+
+void Equip(float duration, BatteryType batteryType)
     {
         equipDuration = duration;
         equipStartTime = Time.time;
@@ -86,11 +125,19 @@ public class EquipFlashlight : MonoBehaviour
         {
             flashlightDamage = 20;
             attackCooldown = attackCooldownFina;
+            if (flashlightLight != null)
+            {
+                flashlightLight.intensity = defaultIntensity;
+            }
         }
         else if (batteryType == BatteryType.PilaAncha)
         {
             flashlightDamage = 40;
             attackCooldown = attackCooldownAncha;
+            if (flashlightLight != null)
+            {
+                flashlightLight.intensity = pilaAnchaIntensity;
+            }
         }
 
         if (flashlightInstance == null)
@@ -100,6 +147,15 @@ public class EquipFlashlight : MonoBehaviour
             flashlightInstance.transform.localRotation = Quaternion.Euler(flashlightRotation); // Ajustar la rotación de la linterna
             flashlightInstance.transform.localScale = flashlightScale;
             flashlightLight = flashlightInstance.GetComponentInChildren<Light>();
+
+            if (currentBatteryType == BatteryType.PilaAncha)
+            {
+                flashlightLight.intensity = pilaAnchaIntensity;
+            }
+            else
+            {
+                flashlightLight.intensity = defaultIntensity;
+            }
         }
 
         if (animator != null)

@@ -15,6 +15,15 @@ TagManager:
   - Waypoint
   - puertaAccess
   - key
+  - puertaAlm
+  - puertaAlm1
+  - puertaBlock
+  - puertaCorridor
+  - puertaRoom1
+  - puertaRoom2
+  - FinDemo
+  - key2
+  - trozo
   layers:
   - Default
   - TransparentFX

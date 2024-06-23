@@ -61,6 +61,7 @@
     <Compile Include="Assets\Scripts\EquipFlashlight.cs" />
     <Compile Include="Assets\Scripts\EquipBlanket.cs" />
     <Compile Include="Assets\Scripts\TutorialTextManager.cs" />
+    <Compile Include="Assets\Scripts\ControladorAmuleto.cs" />
     <Compile Include="Assets\Scripts\MenuOpciones.cs" />
     <Compile Include="Assets\Scripts\GetObject.cs" />
     <Compile Include="Assets\Scripts\MenuPausa.cs" />
@@ -70,8 +71,10 @@
     <Compile Include="Assets\Scripts\CameraFollow.cs" />
     <Compile Include="Assets\Scripts\Animations.cs" />
     <Compile Include="Assets\Scripts\Menu.cs" />
+    <Compile Include="Assets\Scripts\ControladorEscenasPasillo.cs" />
     <Compile Include="Assets\Scripts\PlayerController.cs" />
     <Compile Include="Assets\Scripts\EnemyAiTutorial.cs" />
+    <Compile Include="Assets\Scripts\Level1manager.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

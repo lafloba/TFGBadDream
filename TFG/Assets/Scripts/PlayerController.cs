@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -49,6 +50,15 @@ public class PlayerController : MonoBehaviour
         SetGravity();
 
         player.Move(movePlayer * Time.deltaTime);
+
+        if (ControladorEscenasPasillo.Instance.posicionGuardada == true && SceneManager.GetActiveScene().name == "Corridor")
+        {
+            player.Move(ControladorEscenasPasillo.Instance.ObtenerPosicionJugador());
+            ControladorEscenasPasillo.Instance.posicionGuardada = false;
+            Debug.Log(player.transform.position.ToString());
+
+        }
+        
     }
 
     void camDirection()

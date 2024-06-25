@@ -1,5 +1,5 @@
 using UnityEngine;
-using TMPro; // Necesario para acceder a TextMeshProUGUI
+using TMPro;
 
 public class EquipFlashlight : MonoBehaviour
 {
@@ -15,18 +15,19 @@ public class EquipFlashlight : MonoBehaviour
     public float maxDetectionDistance = 10f; // Distancia máxima de detección
     public float pilaAnchaIntensity = 5.0f; // Intensidad de la linterna para pila ancha
 
-    public TMP_Text remainingTimeText; // Referencia al componente TextMeshProUGUI para mostrar los segundos restantes
-
     private bool isEquipped = false;
     private GetObject getObjectScript;
     private float equipDuration = 0f;
-    private float remainingEquipTime = 0f;
     private float equipStartTime = 0f;
     private Light flashlightLight;
     private float lastAttackTime = -9999f; // Tiempo del último ataque inicializado en un valor muy bajo
     private int flashlightDamage = 20; // Daño de la linterna (se ajustará según la pila)
     private float attackCooldown = 0.9f; // Tiempo de enfriamiento actual (se ajustará según la pila)
     private float defaultIntensity = 1.0f; // Intensidad predeterminada de la linterna
+    private float remainingEquipTime = 0f; // Tiempo restante de equipamiento
+
+    // Referencia al texto de tiempo restante usando TextMeshProUGUI
+    public TMP_Text remainingTimeText;
 
     // Tipos de pilas
     private enum BatteryType { None, PilaFina, PilaAncha }
@@ -45,6 +46,12 @@ public class EquipFlashlight : MonoBehaviour
         else
         {
             Debug.Log("Script GetObject encontrado.");
+        }
+
+        // Desactivar el texto al inicio si está asignado
+        if (remainingTimeText != null)
+        {
+            remainingTimeText.gameObject.SetActive(false);
         }
     }
 
@@ -91,10 +98,24 @@ public class EquipFlashlight : MonoBehaviour
                 remainingEquipTime = 0f;
             }
 
+            // Activar el texto si no está activado
+            if (!remainingTimeText.gameObject.activeSelf)
+            {
+                remainingTimeText.gameObject.SetActive(true);
+            }
+
             // Actualizar el texto con los segundos restantes
             if (remainingTimeText != null)
             {
                 remainingTimeText.text = "Tiempo restante: " + Mathf.CeilToInt(remainingEquipTime).ToString() + "s";
+            }
+        }
+        else
+        {
+            // Desactivar el texto si la linterna no está equipada o no está en uso
+            if (remainingTimeText != null && remainingTimeText.gameObject.activeSelf)
+            {
+                remainingTimeText.gameObject.SetActive(false);
             }
         }
 
@@ -112,9 +133,7 @@ public class EquipFlashlight : MonoBehaviour
         }
     }
 
-
-
-void Equip(float duration, BatteryType batteryType)
+    void Equip(float duration, BatteryType batteryType)
     {
         equipDuration = duration;
         equipStartTime = Time.time;
@@ -165,6 +184,12 @@ void Equip(float duration, BatteryType batteryType)
 
         isEquipped = true;
         Debug.Log("Linterna equipada con " + batteryType + " por " + duration + " segundos.");
+
+        // Desactivar el texto de tiempo restante al equipar la linterna
+        if (remainingTimeText != null && remainingTimeText.gameObject.activeSelf)
+        {
+            remainingTimeText.gameObject.SetActive(false);
+        }
     }
 
     void Unequip()
@@ -184,6 +209,12 @@ void Equip(float duration, BatteryType batteryType)
         isEquipped = false;
         currentBatteryType = BatteryType.None;
         Debug.Log("Linterna desequipada.");
+
+        // Desactivar el texto de tiempo restante al desequipar la linterna
+        if (remainingTimeText != null && remainingTimeText.gameObject.activeSelf)
+        {
+            remainingTimeText.gameObject.SetActive(false);
+        }
     }
 
     void AttackWithFlashlight()

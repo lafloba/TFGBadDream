@@ -26,6 +26,16 @@ public class GetObject : MonoBehaviour
     // Variables públicas para contar las veces que se ha destruido el objeto
     public int contadorPilaFina = 0;
     public int contadorPilaAncha = 0;
+
+
+    public static string currentScene;
+    public static string prevScene;
+
+    public void Start()
+    {
+        currentScene = SceneManager.GetActiveScene().name;
+    }
+
     void Update()
     {
         if (pickedObject != null)
@@ -40,7 +50,6 @@ public class GetObject : MonoBehaviour
                 pickedObject.GetComponent<Rigidbody>().isKinematic = false;
                 pickedObject.gameObject.transform.SetParent(null);
                 pickedObject = null;
-
             }
         }
 
@@ -72,10 +81,9 @@ public class GetObject : MonoBehaviour
                 pickedObject = other.gameObject;
             }
         }
-
         else if (other.gameObject.CompareTag("puerta"))
         {
-            if (!ControladorLlave.Instance.IsKeyCollected() && !ventActive)
+            if (!Door.Instance.IsKeyCollected() && !ventActive)
             {
                 mensaje = "Pulsa ' F ' para abrir";
                 mostrandoMensaje = true;
@@ -100,8 +108,7 @@ public class GetObject : MonoBehaviour
                     }
                 }
             }
-
-            else if (ControladorLlave.Instance.IsKeyCollected() && !ventActive)
+            else if (Door.Instance.IsKeyCollected() && !ventActive)
             {
                 mensaje = "Pulsa ' F ' para abrir con la llave";
                 mostrandoMensaje = true;
@@ -113,7 +120,6 @@ public class GetObject : MonoBehaviour
                 }
             }
         }
-
         else if (other.gameObject.CompareTag("key"))
         {
             mensaje = "Pulsa ' F ' para recoger la llave";
@@ -123,7 +129,7 @@ public class GetObject : MonoBehaviour
             if (Input.GetKey("f"))
             {
                 contadorLlave++;
-                ControladorLlave.Instance.SumarLlave(contadorLlave);
+                Door.Instance.SumarLlave(contadorLlave);
                 Destroy(other.gameObject);
                 mensaje = "Llave recogida. Volviendo a la habitación...";
                 mostrandoMensaje = true;
@@ -133,7 +139,6 @@ public class GetObject : MonoBehaviour
                 ActivateFadeOutToRoom();
             }
         }
-
         else if (other.gameObject.CompareTag("key2"))
         {
             mensaje = "Pulsa ' F ' para recoger la llave";
@@ -143,11 +148,10 @@ public class GetObject : MonoBehaviour
             if (Input.GetKey("f"))
             {
                 contadorLlave++;
-                ControladorLlave.Instance.SumarLlave(contadorLlave);
+                Door.Instance.SumarLlave(contadorLlave);
                 Destroy(other.gameObject);
             }
         }
-
         else if (other.gameObject.CompareTag("pila"))
         {
             mensaje = "Pulsa ' F '";
@@ -163,7 +167,6 @@ public class GetObject : MonoBehaviour
                 Destroy(other.gameObject);
             }
         }
-
         else if (other.gameObject.CompareTag("trozo"))
         {
             mensaje = "Pulsa ' F '";
@@ -177,7 +180,6 @@ public class GetObject : MonoBehaviour
                 Destroy(other.gameObject);
             }
         }
-
         else if (other.gameObject.CompareTag("FinDemo"))
         {
             mensaje = "Pulsa ' F '";
@@ -189,7 +191,6 @@ public class GetObject : MonoBehaviour
                 ActivateFadeOutToMenu();
             }
         }
-
         else if (other.gameObject.CompareTag("pilaAncha"))
         {
             mensaje = "Pulsa ' F '";
@@ -205,13 +206,11 @@ public class GetObject : MonoBehaviour
                 Destroy(other.gameObject);
             }
         }
-
         else if (other.gameObject.CompareTag(tagCambioEscena) && ventActive && !isTransitioning)
         {
             isTransitioning = true;
             ActivateFadeOut();
         }
-
         else if (other.gameObject.CompareTag("puertaAccess"))
         {
             mensaje = "Pulsa ' F ' para abrir";
@@ -222,7 +221,6 @@ public class GetObject : MonoBehaviour
                 // Iniciar la transición de regreso a la habitación
                 ActivateFadeOutToRoom();
             }
-
         }
         else if (other.gameObject.CompareTag("puertaAlm"))
         {
@@ -231,10 +229,10 @@ public class GetObject : MonoBehaviour
             tiempoMostrandoMensaje = 0f;
             if (Input.GetKey("f"))
             {
-                ControladorEscenasPasillo.Instance.GuardarPosicionJugador(transform.position);
+
+                prevScene = currentScene;
                 ActivateFadeOutToAlm();
             }
-
         }
         else if (other.gameObject.CompareTag("puertaAlm1"))
         {
@@ -243,12 +241,10 @@ public class GetObject : MonoBehaviour
             tiempoMostrandoMensaje = 0f;
             if (Input.GetKey("f"))
             {
-                // Iniciar la transición de regreso a la habitación
+                prevScene = currentScene;
                 ActivateFadeOutToAlm1();
             }
-
         }
-
         else if (other.gameObject.CompareTag("puertaCorridor"))
         {
             mensaje = "Pulsa ' F ' para abrir";
@@ -256,14 +252,11 @@ public class GetObject : MonoBehaviour
             tiempoMostrandoMensaje = 0f;
             if (Input.GetKey("f"))
             {
-                // Iniciar la transición de regreso a la habitación
-
+                prevScene = currentScene;
                 ActivateFadeOutToCorridor();
-
+                
             }
-
         }
-
         else if (other.gameObject.CompareTag("puertaRoom1"))
         {
             mensaje = "Pulsa ' F ' - HABITACION 1";
@@ -271,12 +264,11 @@ public class GetObject : MonoBehaviour
             tiempoMostrandoMensaje = 0f;
             if (Input.GetKey("f"))
             {
+                prevScene = currentScene;
                 // Iniciar la transición de regreso a la habitación
                 ActivateFadeOutToRoom1();
             }
-
         }
-
         else if (other.gameObject.CompareTag("puertaRoom2"))
         {
             mensaje = "Pulsa ' F ' - HABITACION 2";
@@ -284,12 +276,11 @@ public class GetObject : MonoBehaviour
             tiempoMostrandoMensaje = 0f;
             if (Input.GetKey("f"))
             {
+                prevScene = currentScene;
                 // Iniciar la transición de regreso a la habitación
                 ActivateFadeOutToRoom2();
             }
-
         }
-
         else if (other.gameObject.CompareTag("puertaBlock"))
         {
             mensaje = "Pulsa ' F ' para abrir";
@@ -301,9 +292,7 @@ public class GetObject : MonoBehaviour
                 mostrandoMensaje = true;
                 tiempoMostrandoMensaje = 0f;
             }
-
         }
-
     }
 
     void OnGUI()
@@ -399,7 +388,6 @@ public class GetObject : MonoBehaviour
     {
         SceneManager.LoadScene("Almacen");
         isTransitioning = false;
-        
     }
 
     void LoadAlm1Scene()
@@ -418,7 +406,6 @@ public class GetObject : MonoBehaviour
     {
         SceneManager.LoadScene("Corridor");
         isTransitioning = false;
-        ControladorEscenasPasillo.Instance.posicionGuardada = true;
     }
 
     public int GetContadorPilaFina()
@@ -431,25 +418,26 @@ public class GetObject : MonoBehaviour
         return contadorPilaAncha;
     }
 
-        void AbrirPuertaConLlave(GameObject puerta)
+    void AbrirPuertaConLlave(GameObject puerta)
+    {
+        // Asegúrate de actualizar el mensaje antes de ocultarlo
+        mensaje = ""; // Limpiar el mensaje
+        mostrandoMensaje = false;
+
+        ventActive = false;
+
+        GameObject objetoConGravedad = GameObject.FindGameObjectWithTag(tagVent);
+        if (objetoConGravedad != null)
         {
-            // Asegúrate de actualizar el mensaje antes de ocultarlo
-            mensaje = ""; // Limpiar el mensaje
-            mostrandoMensaje = false;
-
-            ventActive = false;
-
-            GameObject objetoConGravedad = GameObject.FindGameObjectWithTag(tagVent);
-            if (objetoConGravedad != null)
+            Rigidbody rb = objetoConGravedad.GetComponent<Rigidbody>();
+            if (rb != null)
             {
-                Rigidbody rb = objetoConGravedad.GetComponent<Rigidbody>();
-                if (rb != null)
-                {
-                    rb.isKinematic = true;
-                }
+                rb.isKinematic = true;
             }
-            Destroy(puerta);
-
-            ActivateFadeOutToCorridor();
         }
+        Destroy(puerta);
+
+        ActivateFadeOutToCorridor();
     }
+    
+}

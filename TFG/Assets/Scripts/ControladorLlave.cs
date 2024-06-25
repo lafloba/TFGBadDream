@@ -2,17 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ControladorLlave : MonoBehaviour
+public class Door : MonoBehaviour
 {
-    public static ControladorLlave Instance;
+    public static Door Instance;
 
     [SerializeField] private float contadorLlaves;
 
     private void Awake()
     {
-        if(ControladorLlave.Instance == null)
+        if(Door.Instance == null)
         {
-            ControladorLlave.Instance = this;
+            Door.Instance = this;
             DontDestroyOnLoad(this.gameObject);
         }
         else

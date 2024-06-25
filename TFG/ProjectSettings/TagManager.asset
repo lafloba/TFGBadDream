@@ -24,6 +24,7 @@ TagManager:
   - FinDemo
   - key2
   - trozo
+  - RespawnAlm
   layers:
   - Default
   - TransparentFX

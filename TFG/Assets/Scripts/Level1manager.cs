@@ -21,7 +21,7 @@ public class Level1Manager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (ControladorLlave.Instance.IsKeyCollected() && ControladorAmuleto.Instance.IsTrozoCollected())
+        if (Door.Instance.IsKeyCollected() && ControladorAmuleto.Instance.IsTrozoCollected())
         {
             if (objetoADestruir != null)
             {

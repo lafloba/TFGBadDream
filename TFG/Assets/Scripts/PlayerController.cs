@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -8,57 +6,40 @@ public class PlayerController : MonoBehaviour
     private float horizontalMove;
     private float verticalMove;
     private Vector3 playerInput;
-    
-    public CharacterController player;
 
+    public CharacterController player;
     public float playerSpeed;
-    private Vector3 movePlayer; //va a guardar la direccion a la que va a ir el personaje
+    private Vector3 movePlayer;
     public float gravity = 9.8f;
     public float fallVelocity;
 
     public Camera mainCamera;
-    private Vector3 camForward; //saber a que direccion tiene que mirar
+    private Vector3 camForward;
     private Vector3 camRight;
 
-    public float moveSpeed = 5f; // Velocidad de movimiento del personaje
-
-
-    // Start is called before the first frame update
+   
     void Start()
     {
         player = GetComponent<CharacterController>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         horizontalMove = Input.GetAxis("Horizontal");
         verticalMove = Input.GetAxis("Vertical");
 
-        //controlar la velocidad en diagonal del personaje
-        playerInput = new Vector3(horizontalMove, 0, verticalMove);
-        playerInput = Vector3.ClampMagnitude(playerInput, 1);
+        playerInput = new Vector3(horizontalMove, 0, verticalMove).normalized;
 
         camDirection();
 
         movePlayer = playerInput.x * camRight + playerInput.z * camForward;
-
         movePlayer = movePlayer * playerSpeed;
 
-        player.transform.LookAt(player.transform.position + movePlayer); //cambia la direccion de la vista del personaje
+        player.transform.LookAt(player.transform.position + movePlayer);
 
         SetGravity();
 
         player.Move(movePlayer * Time.deltaTime);
-
-        if (ControladorEscenasPasillo.Instance.posicionGuardada == true && SceneManager.GetActiveScene().name == "Corridor")
-        {
-            player.Move(ControladorEscenasPasillo.Instance.ObtenerPosicionJugador());
-            ControladorEscenasPasillo.Instance.posicionGuardada = false;
-            Debug.Log(player.transform.position.ToString());
-
-        }
-        
     }
 
     void camDirection()
@@ -75,17 +56,15 @@ public class PlayerController : MonoBehaviour
 
     void SetGravity()
     {
-
         if (player.isGrounded)
         {
             fallVelocity = -gravity * Time.deltaTime;
-            movePlayer.y = fallVelocity;
         }
-
         else
         {
             fallVelocity -= gravity * Time.deltaTime;
-            movePlayer.y = fallVelocity;
         }
+
+        movePlayer.y = fallVelocity;
     }
 }

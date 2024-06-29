@@ -34,7 +34,7 @@ public class Menu : MonoBehaviour
 
     void LoadNextScene()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        SceneManager.LoadScene("Cinematica");
         isTransitioning = false;
     }
 }

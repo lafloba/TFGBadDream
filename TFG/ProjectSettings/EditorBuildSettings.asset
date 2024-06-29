@@ -32,4 +32,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Habitacion 2.unity
     guid: bd8f64d4766dc394490b56f80819c736
+  - enabled: 1
+    path: Assets/Scenes/Cinematica.unity
+    guid: 3573ab312e43e934a9e6a831aa04cbfc
   m_configObjects: {}

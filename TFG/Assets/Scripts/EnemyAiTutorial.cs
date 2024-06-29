@@ -1,10 +1,12 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 public class EnemyAiTutorial : MonoBehaviour
 {
     public Animator ani;
     public int maxHealth = 100;
     private int currentHealth;
+    public Slider barraVidaEnemigo;
 
     public float moveSpeed = 2f;
     public float chaseSpeed = 4f; // Velocidad de persecución
@@ -56,6 +58,8 @@ public class EnemyAiTutorial : MonoBehaviour
 
     void Update()
     {
+        barraVidaEnemigo.value = currentHealth;
+
         if (!IsInPreparationPhase() && !isCollidingWithPlayer) // Asegurarse de que el enemigo no se mueva si está colisionando con el jugador
         {
             // Verificar si el jugador está en el rango de detección

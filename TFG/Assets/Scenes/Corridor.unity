@@ -360,7 +360,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 5518466ac73c3b94e8f1765c6c455927, type: 3}
       propertyPath: m_TagString
-      value: puertaAccess
+      value: puertaBlock
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 5518466ac73c3b94e8f1765c6c455927, type: 3}
       propertyPath: m_RootOrder
@@ -4421,8 +4421,8 @@ MonoBehaviour:
   chaseSpeed: 0.75
   changeDirectionTime: 3
   obstacleDetectionRange: 1
-  detectionRange: 1.5
-  stopChasingDistance: 2
+  detectionRange: 1
+  stopChasingDistance: 1
   obstacleLayer:
     serializedVersion: 2
     m_Bits: 512
@@ -5111,8 +5111,8 @@ MonoBehaviour:
   chaseSpeed: 0.75
   changeDirectionTime: 3
   obstacleDetectionRange: 1
-  detectionRange: 1.5
-  stopChasingDistance: 2
+  detectionRange: 1
+  stopChasingDistance: 1
   obstacleLayer:
     serializedVersion: 2
     m_Bits: 512
@@ -9357,8 +9357,8 @@ MonoBehaviour:
   chaseSpeed: 0.75
   changeDirectionTime: 3
   obstacleDetectionRange: 1
-  detectionRange: 1.5
-  stopChasingDistance: 2
+  detectionRange: 1
+  stopChasingDistance: 1
   obstacleLayer:
     serializedVersion: 2
     m_Bits: 512

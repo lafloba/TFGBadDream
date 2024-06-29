@@ -573,8 +573,8 @@ MonoBehaviour:
   chaseSpeed: 0.75
   changeDirectionTime: 3
   obstacleDetectionRange: 1
-  detectionRange: 1.5
-  stopChasingDistance: 2
+  detectionRange: 1
+  stopChasingDistance: 1
   obstacleLayer:
     serializedVersion: 2
     m_Bits: 512
@@ -2533,8 +2533,8 @@ MonoBehaviour:
   chaseSpeed: 0.75
   changeDirectionTime: 3
   obstacleDetectionRange: 1
-  detectionRange: 1.5
-  stopChasingDistance: 2
+  detectionRange: 1
+  stopChasingDistance: 1
   obstacleLayer:
     serializedVersion: 2
     m_Bits: 512
@@ -4288,8 +4288,8 @@ MonoBehaviour:
   chaseSpeed: 0.75
   changeDirectionTime: 3
   obstacleDetectionRange: 1
-  detectionRange: 1.5
-  stopChasingDistance: 2
+  detectionRange: 1
+  stopChasingDistance: 1
   obstacleLayer:
     serializedVersion: 2
     m_Bits: 512
@@ -4401,8 +4401,8 @@ MonoBehaviour:
   chaseSpeed: 0.75
   changeDirectionTime: 3
   obstacleDetectionRange: 1
-  detectionRange: 1.5
-  stopChasingDistance: 2
+  detectionRange: 1
+  stopChasingDistance: 1
   obstacleLayer:
     serializedVersion: 2
     m_Bits: 512
@@ -5449,8 +5449,8 @@ MonoBehaviour:
   chaseSpeed: 0.75
   changeDirectionTime: 3
   obstacleDetectionRange: 1
-  detectionRange: 1.5
-  stopChasingDistance: 2
+  detectionRange: 1
+  stopChasingDistance: 1
   obstacleLayer:
     serializedVersion: 2
     m_Bits: 512
@@ -5922,8 +5922,8 @@ MonoBehaviour:
   chaseSpeed: 0.75
   changeDirectionTime: 3
   obstacleDetectionRange: 1
-  detectionRange: 1.5
-  stopChasingDistance: 2
+  detectionRange: 1
+  stopChasingDistance: 1
   obstacleLayer:
     serializedVersion: 2
     m_Bits: 512

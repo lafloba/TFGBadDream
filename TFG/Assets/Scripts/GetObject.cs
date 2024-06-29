@@ -281,18 +281,6 @@ public class GetObject : MonoBehaviour
                 ActivateFadeOutToRoom2();
             }
         }
-        else if (other.gameObject.CompareTag("puertaBlock"))
-        {
-            mensaje = "Pulsa ' F ' para abrir";
-            mostrandoMensaje = true;
-            tiempoMostrandoMensaje = 0f;
-            if (Input.GetKey("f"))
-            {
-                mensaje = "No se puede pasar";
-                mostrandoMensaje = true;
-                tiempoMostrandoMensaje = 0f;
-            }
-        }
     }
 
     void OnGUI()

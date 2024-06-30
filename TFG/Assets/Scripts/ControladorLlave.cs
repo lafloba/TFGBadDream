@@ -8,6 +8,8 @@ public class Door : MonoBehaviour
 
     [SerializeField] private float contadorLlaves;
 
+    [SerializeField] public bool keyInScene = true;
+
     private void Awake()
     {
         if(Door.Instance == null)
@@ -29,5 +31,10 @@ public class Door : MonoBehaviour
     public bool IsKeyCollected()
     {
         return contadorLlaves > 0;
+    }
+
+    public bool ThereIsAKey()
+    {
+        return keyInScene;
     }
 }

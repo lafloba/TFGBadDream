@@ -7,6 +7,7 @@ public class ControladorAmuleto : MonoBehaviour
     public static ControladorAmuleto Instance;
 
     [SerializeField] private float contadorTrozos;
+    [SerializeField] public bool amuletInScene = true;
 
     private void Awake()
     {
@@ -29,5 +30,10 @@ public class ControladorAmuleto : MonoBehaviour
     public bool IsTrozoCollected()
     {
         return contadorTrozos > 0;
+    }
+
+    public bool ThereIsAnAmulet()
+    {
+        return amuletInScene;
     }
 }

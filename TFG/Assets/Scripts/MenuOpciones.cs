@@ -1,9 +1,14 @@
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
+using System.Collections.Generic;
 
 public class MenuOpciones : MonoBehaviour
 {
     public Toggle muteToggle; // Referencia al Toggle
+    public Toggle fullScreenToggle; // Referencia al Toggle pantalla completa
+    public TMP_Dropdown resoluciones;
+    Resolution[] tiposResoluciones;
 
     void Start()
     {
@@ -16,6 +21,17 @@ public class MenuOpciones : MonoBehaviour
         muteToggle.onValueChanged.AddListener(delegate {
             MuteUnmute(muteToggle.isOn);
         });
+
+        if (Screen.fullScreen)
+        {
+            fullScreenToggle.isOn = true;
+        }
+        else
+        {
+            fullScreenToggle.isOn = false;
+        }
+
+        RevisarResolucion();
     }
 
     public void MuteUnmute(bool isMuted)
@@ -28,6 +44,40 @@ public class MenuOpciones : MonoBehaviour
     private void SetMute(bool isMuted)
     {
         AudioListener.volume = isMuted ? 0 : 1;
+    }
+
+    public void ActivarPantallaCompleta(bool pantallaCompleta)
+    {
+        Screen.fullScreen = pantallaCompleta;
+    }
+
+    public void RevisarResolucion()
+    {
+        tiposResoluciones = Screen.resolutions;
+        resoluciones.ClearOptions();
+        List<string> opciones = new List<string>();
+        int resolucionActual = 0;
+
+        for(int i=0; i<tiposResoluciones.Length; i++)
+        {
+            string opcion = tiposResoluciones[i].width + " x " + tiposResoluciones[i].height;
+            opciones.Add(opcion);
+
+            if(Screen.fullScreen && tiposResoluciones[i].width == Screen.currentResolution.width && tiposResoluciones[i].height == Screen.currentResolution.height)
+            {
+                resolucionActual = i;
+            }
+        }
+
+        resoluciones.AddOptions(opciones);
+        resoluciones.value = resolucionActual;
+        resoluciones.RefreshShownValue();
+    }
+
+    public void CambiarResolucion(int indiceResolucion)
+    {
+        Resolution resolucion = tiposResoluciones[indiceResolucion];
+        Screen.SetResolution(resolucion.width, resolucion.height, Screen.fullScreen);
     }
 }
 

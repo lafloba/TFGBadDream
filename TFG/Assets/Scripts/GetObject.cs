@@ -31,9 +31,22 @@ public class GetObject : MonoBehaviour
     public static string currentScene;
     public static string prevScene;
 
+    public GameObject llave;
+    public GameObject amuleto;
+
     public void Start()
     {
         currentScene = SceneManager.GetActiveScene().name;
+
+        if (!Door.Instance.ThereIsAKey()){
+            Destroy(llave);
+        }
+
+        if (!ControladorAmuleto.Instance.ThereIsAnAmulet())
+        {
+            Destroy(amuleto);
+        }
+
     }
 
     void Update()
@@ -150,6 +163,7 @@ public class GetObject : MonoBehaviour
                 contadorLlave++;
                 Door.Instance.SumarLlave(contadorLlave);
                 Destroy(other.gameObject);
+                Door.Instance.keyInScene = false;
             }
         }
         else if (other.gameObject.CompareTag("pila"))
@@ -178,6 +192,7 @@ public class GetObject : MonoBehaviour
                 contadorTrozo++;
                 ControladorAmuleto.Instance.SumarTrozo(contadorTrozo);
                 Destroy(other.gameObject);
+                ControladorAmuleto.Instance.amuletInScene = false;
             }
         }
         else if (other.gameObject.CompareTag("FinDemo"))
@@ -254,7 +269,7 @@ public class GetObject : MonoBehaviour
             {
                 prevScene = currentScene;
                 ActivateFadeOutToCorridor();
-                
+
             }
         }
         else if (other.gameObject.CompareTag("puertaRoom1"))
@@ -427,5 +442,5 @@ public class GetObject : MonoBehaviour
 
         ActivateFadeOutToCorridor();
     }
-    
+
 }

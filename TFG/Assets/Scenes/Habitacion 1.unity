@@ -3667,6 +3667,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   contadorTrozos: 0
+  amuletInScene: 1
 --- !u!4 &1704749567
 Transform:
   m_ObjectHideFlags: 0
@@ -4057,6 +4058,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   contadorLlaves: 0
+  keyInScene: 1
 --- !u!4 &1967754838
 Transform:
   m_ObjectHideFlags: 0
@@ -4240,6 +4242,8 @@ MonoBehaviour:
   fadePanel: {fileID: 221919138}
   contadorPilaFina: 0
   contadorPilaAncha: 0
+  llave: {fileID: 0}
+  amuleto: {fileID: 796014102}
 --- !u!54 &2084936295
 Rigidbody:
   m_ObjectHideFlags: 0

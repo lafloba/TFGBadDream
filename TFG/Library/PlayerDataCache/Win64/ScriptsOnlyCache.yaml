@@ -82,6 +82,7 @@ ScriptsOnlyBuild:
     - TMPro.TMP_SpriteAsset
     - TMPro.TMP_StyleSheet
     Unity.TextMeshPro.dll:
+    - TMPro.TMP_Dropdown
     - TMPro.TMP_FontAsset
     - TMPro.TMP_Settings
     - TMPro.TMP_SpriteAsset
@@ -119,6 +120,9 @@ ScriptsOnlyBuild:
     - UnityEngine.UI.CanvasScaler
     - UnityEngine.UI.GraphicRaycaster
     - UnityEngine.UI.Image
+    - UnityEngine.UI.Mask
+    - UnityEngine.UI.ScrollRect
+    - UnityEngine.UI.Scrollbar
     - UnityEngine.UI.Slider
     - UnityEngine.UI.Toggle
   serializedClasses:
@@ -139,6 +143,9 @@ ScriptsOnlyBuild:
     - TMPro.FontAssetCreationSettings
     - TMPro.KerningTable
     - TMPro.TMP_Character
+    - TMPro.TMP_Dropdown/DropdownEvent
+    - TMPro.TMP_Dropdown/OptionData
+    - TMPro.TMP_Dropdown/OptionDataList
     - TMPro.TMP_FontFeatureTable
     - TMPro.TMP_FontWeightPair
     - TMPro.TMP_GlyphAdjustmentRecord
@@ -195,6 +202,9 @@ ScriptsOnlyBuild:
   - assembly: Assembly-CSharp
     fullTypeName: Menu
     methodName: Jugar
+  - assembly: Assembly-CSharp
+    fullTypeName: MenuOpciones
+    methodName: CambiarResolucion
   - assembly: Assembly-CSharp
     fullTypeName: MenuOpciones
     methodName: ActivarPantallaCompleta
@@ -966,7 +976,7 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 10866}
     - Class: 114
-      Script: {instanceID: 31932}
+      Script: {instanceID: 34436}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -1171,6 +1181,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 3202}
     - Class: 114
       Script: {instanceID: 3542}
+    - Class: 114
+      Script: {instanceID: 3558}
     - Class: 114
       Script: {instanceID: 3718}
     - Class: 114
@@ -2172,7 +2184,7 @@ ScriptsOnlyBuild:
     className: UniversalRenderPipelineEditorResources
   - hash:
       serializedVersion: 2
-      Hash: 12b9c83224f1634bbe00631144fb0b1c
+      Hash: b7572b3ed8250c3c63d1cfab6a1f945c
     assemblyName: Assembly-CSharp
     namespaceName: 
     className: MenuOpciones

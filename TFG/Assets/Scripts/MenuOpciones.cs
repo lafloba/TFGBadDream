@@ -72,10 +72,15 @@ public class MenuOpciones : MonoBehaviour
         resoluciones.AddOptions(opciones);
         resoluciones.value = resolucionActual;
         resoluciones.RefreshShownValue();
+
+        resoluciones.value = PlayerPrefs.GetInt("numeroResolucion", 0);
     }
 
     public void CambiarResolucion(int indiceResolucion)
     {
+
+        PlayerPrefs.SetInt("numeroResolucion", resoluciones.value);
+
         Resolution resolucion = tiposResoluciones[indiceResolucion];
         Screen.SetResolution(resolucion.width, resolucion.height, Screen.fullScreen);
     }

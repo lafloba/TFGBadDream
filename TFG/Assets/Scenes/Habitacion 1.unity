@@ -335,6 +335,7 @@ MonoBehaviour:
   gravity: 9.8
   fallVelocity: 0
   mainCamera: {fileID: 1078608842}
+  canMove: 0
 --- !u!1 &215109221
 GameObject:
   m_ObjectHideFlags: 0
@@ -4244,6 +4245,7 @@ MonoBehaviour:
   contadorPilaAncha: 0
   llave: {fileID: 0}
   amuleto: {fileID: 796014102}
+  script: {fileID: 198705116}
 --- !u!54 &2084936295
 Rigidbody:
   m_ObjectHideFlags: 0

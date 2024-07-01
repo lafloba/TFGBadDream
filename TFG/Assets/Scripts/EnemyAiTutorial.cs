@@ -31,9 +31,13 @@ public class EnemyAiTutorial : MonoBehaviour
     private Transform player;
     private EquipBlanket equipBlanket; // Referencia al script EquipBlanket
 
+    private Rigidbody rb; // Referencia al Rigidbody del enemigo
+
     void Start()
     {
         ani = GetComponent<Animator>();
+        rb = GetComponent<Rigidbody>(); // Obtener el Rigidbody
+
         currentHealth = maxHealth;
 
         // Encuentra el jugador por su nombre o etiqueta específica (en este caso, "Artie")
@@ -269,5 +273,4 @@ public class EnemyAiTutorial : MonoBehaviour
             Debug.Log("Enemy stopped colliding with player and resumed movement.");
         }
     }
-
 }

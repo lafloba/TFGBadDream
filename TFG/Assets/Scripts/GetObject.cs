@@ -1,3 +1,4 @@
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -33,6 +34,7 @@ public class GetObject : MonoBehaviour
 
     public GameObject llave;
     public GameObject amuleto;
+
 
     public void Start()
     {
@@ -81,14 +83,20 @@ public class GetObject : MonoBehaviour
     {
         if (other.gameObject.CompareTag("PickableObject"))
         {
-            mensaje = "Pulsa ' E ' para agarrar";
+            mensaje = "Pulsa ' E '";
             mostrandoMensaje = true;
             tiempoMostrandoMensaje = 0f;
 
             if (Input.GetKey("e") && pickedObject == null)
             {
-                other.GetComponent<Rigidbody>().useGravity = false;
-                other.GetComponent<Rigidbody>().isKinematic = true;
+                // Desactivamos la gravedad y la cinemática del objeto
+                Rigidbody rb = other.GetComponent<Rigidbody>();
+                if (rb != null)
+                {
+                    rb.useGravity = false;
+                    rb.isKinematic = true;
+                }
+                // Posicionamos el objeto en el punto de la mano
                 other.transform.position = handPoint.transform.position;
                 other.gameObject.transform.SetParent(handPoint.gameObject.transform);
                 pickedObject = other.gameObject;

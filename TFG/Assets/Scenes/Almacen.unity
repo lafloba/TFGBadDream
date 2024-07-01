@@ -2004,6 +2004,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   contadorLlaves: 0
+  keyInScene: 1
 --- !u!4 &614012261
 Transform:
   m_ObjectHideFlags: 0
@@ -2849,6 +2850,7 @@ MonoBehaviour:
   gravity: 9.8
   fallVelocity: 0
   mainCamera: {fileID: 1563755951}
+  canMove: 0
 --- !u!143 &987196828
 CharacterController:
   m_ObjectHideFlags: 0
@@ -2929,6 +2931,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   contadorTrozos: 0
+  amuletInScene: 1
 --- !u!4 &1240317305
 Transform:
   m_ObjectHideFlags: 0
@@ -3951,6 +3954,9 @@ MonoBehaviour:
   fadePanel: {fileID: 231036086}
   contadorPilaFina: 0
   contadorPilaAncha: 0
+  llave: {fileID: 0}
+  amuleto: {fileID: 0}
+  script: {fileID: 987196827}
 --- !u!65 &1832059084
 BoxCollider:
   m_ObjectHideFlags: 0

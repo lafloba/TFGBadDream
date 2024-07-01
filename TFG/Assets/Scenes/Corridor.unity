@@ -190,6 +190,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   contadorLlaves: 0
+  keyInScene: 1
 --- !u!4 &19711779
 Transform:
   m_ObjectHideFlags: 0
@@ -907,6 +908,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: b4b62be437e8a1b41bac5e76ab2972b7,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a09a1d9e93a8c3d4e9103ba2e61f462c, type: 2}
     - target: {fileID: 919132149155446097, guid: b4b62be437e8a1b41bac5e76ab2972b7,
         type: 3}
       propertyPath: m_Name
@@ -2714,6 +2720,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: b4b62be437e8a1b41bac5e76ab2972b7,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a09a1d9e93a8c3d4e9103ba2e61f462c, type: 2}
     - target: {fileID: 919132149155446097, guid: b4b62be437e8a1b41bac5e76ab2972b7,
         type: 3}
       propertyPath: m_Name
@@ -2772,6 +2783,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   contadorTrozos: 0
+  amuletInScene: 1
 --- !u!4 &578023096
 Transform:
   m_ObjectHideFlags: 0
@@ -4104,6 +4116,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: b4b62be437e8a1b41bac5e76ab2972b7,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a09a1d9e93a8c3d4e9103ba2e61f462c, type: 2}
     - target: {fileID: 919132149155446097, guid: b4b62be437e8a1b41bac5e76ab2972b7,
         type: 3}
       propertyPath: m_Name
@@ -4473,7 +4490,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!1 &1196963719
 GameObject:
@@ -5136,8 +5153,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.1, y: 0.15, z: 0.05}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.1, y: 0.37, z: 0.05}
+  m_Center: {x: 0, y: 0.11, z: 0}
 --- !u!54 &1293938825
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -5163,7 +5180,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!1 &1324287151
 GameObject:
@@ -6393,6 +6410,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: b4b62be437e8a1b41bac5e76ab2972b7,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a09a1d9e93a8c3d4e9103ba2e61f462c, type: 2}
     - target: {fileID: 919132149155446097, guid: b4b62be437e8a1b41bac5e76ab2972b7,
         type: 3}
       propertyPath: m_Name
@@ -7684,6 +7706,9 @@ MonoBehaviour:
   fadePanel: {fileID: 1505559726}
   contadorPilaFina: 0
   contadorPilaAncha: 0
+  llave: {fileID: 0}
+  amuleto: {fileID: 0}
+  script: {fileID: 2131856050}
 --- !u!65 &1712188434
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -9409,7 +9434,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!1 &1938695662
 GameObject:
@@ -10112,6 +10137,7 @@ MonoBehaviour:
   gravity: 9.8
   fallVelocity: 0
   mainCamera: {fileID: 1707902148}
+  canMove: 0
 --- !u!143 &2131856051
 CharacterController:
   m_ObjectHideFlags: 0

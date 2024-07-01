@@ -264,7 +264,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.51458335, y: 0.5222222}
-  m_AnchoredPosition: {x: -14, y: -12}
+  m_AnchoredPosition: {x: -14, y: 0}
   m_SizeDelta: {x: 1892, y: 1056}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &162715204
@@ -340,7 +340,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 1.8532, y: -1.2935}
+  m_AnchoredPosition: {x: 1.8532, y: -1.2935028}
   m_SizeDelta: {x: 1827.1514, y: 198.2598}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &206934205
@@ -579,7 +579,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.51458335, y: 0.5222222}
-  m_AnchoredPosition: {x: -14, y: -12}
+  m_AnchoredPosition: {x: -14, y: 0}
   m_SizeDelta: {x: 1892, y: 1056}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &635402825
@@ -655,11 +655,11 @@ RectTransform:
   m_Father: {fileID: 69520722}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0}
-  m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 1.6223145, y: 143}
-  m_SizeDelta: {x: 1871.3535, y: 245.47229}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 245.47229}
+  m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &871857755
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -733,7 +733,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.51458335, y: 0.5222222}
-  m_AnchoredPosition: {x: -14, y: -12}
+  m_AnchoredPosition: {x: -14, y: 0}
   m_SizeDelta: {x: 1892, y: 1056}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1062978848
@@ -910,6 +910,135 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1206905456}
   m_CullTransparentMesh: 1
+--- !u!1 &1522965995
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1522965997}
+  - component: {fileID: 1522965996}
+  m_Layer: 0
+  m_Name: Musica
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!82 &1522965996
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1522965995}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 24300002, guid: bbe353d942ebac44b840c05d844726b0,
+    type: 2}
+  m_audioClip: {fileID: 8300000, guid: 89ca6895ae7ab7f42b042d6b554d3dfd, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!4 &1522965997
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1522965995}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 960, y: 540, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1537815905
 GameObject:
   m_ObjectHideFlags: 0
@@ -1246,6 +1375,8 @@ MonoBehaviour:
   - {fileID: 162715204}
   - {fileID: 1062978849}
   - {fileID: 635402826}
+  - {fileID: 162715204}
+  - {fileID: 1062978849}
   textComponent: {fileID: 206934205}
   messages:
   - "\xC9rase una vez un ni\xF1o llamado Artie"
@@ -1257,14 +1388,14 @@ MonoBehaviour:
     de su madre que le quedaba"
   - "Fue enviado a un orfanato, donde todo lo ve\xEDa gris y no se relacionaba con
     nadie"
-  - "Aqu\xED estuvo dos a\xF1os, sobreviviendo. Solo"
+  - "All\xED estuvo dos a\xF1os, sobreviviendo. Solo"
   - "Algunos compa\xF1eros le acosaban, tanto es as\xED, que un d\xEDa le robaron
     su posesi\xF3n m\xE1s preciada: su amuleto"
-  - y no contentos con eso, se lo rompiero y escondieron en distintos lugares del
+  - y no contentos con eso, se lo rompieron y escondieron en distintos lugares del
     edificio
   - "Artie en ese momento decidi\xF3 que esa noche , har\xEDa lo que fuera necesario
     y m\xE1s para recuperarlo"
-  imageDuration: 2
+  fadeDuration: 1.5
   aniFade: {fileID: 1554645312}
   fadePanel: {fileID: 1554645310}
 --- !u!4 &2119413456

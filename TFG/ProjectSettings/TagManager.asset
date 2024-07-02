@@ -25,6 +25,7 @@ TagManager:
   - key2
   - trozo
   - RespawnAlm
+  - musica
   layers:
   - Default
   - TransparentFX

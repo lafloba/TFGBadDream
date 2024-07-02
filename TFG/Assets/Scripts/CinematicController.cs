@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
+using System;
 
 public class CinematicController : MonoBehaviour
 {
@@ -43,7 +44,6 @@ public class CinematicController : MonoBehaviour
         if (currentMessageIndex < messages.Length)
         {
             ShowCurrentMessage();
-            ShowCurrentImage();
         }
         else
         {
@@ -53,38 +53,102 @@ public class CinematicController : MonoBehaviour
                 isTransitioning = true;
                 StartCoroutine(ActivateFadeOut());
             }
+            return; // Salir de la función para evitar mostrar una imagen adicional
         }
+
+        // Mostrar la imagen correspondiente al mensaje actual
+        ShowCurrentImage();
     }
 
     void ShowCurrentImage()
     {
-        // Desactiva todas las imágenes
-        for (int i = 0; i < images.Length; i++)
-        {
-            images[i].gameObject.SetActive(false);
-        }
+        // Restablece el zoom de la imagen actual
+        ResetZoom();
 
         // Activa la imagen correspondiente según el índice del mensaje
-        if (currentMessageIndex < 3)
+        int imageIndex = GetImageIndexForMessage(currentMessageIndex);
+        if (imageIndex >= 0 && imageIndex < images.Length)
         {
-            images[0].gameObject.SetActive(true); // Muestra la primera imagen para los primeros 4 mensajes
-        }
-        else if (currentMessageIndex >= 3 && currentMessageIndex < 5)
-        {
-            images[1].gameObject.SetActive(true); // Muestra la segunda imagen a partir del mensaje 5
-        }
-        else if (currentMessageIndex >= 5 && currentMessageIndex < 7)
-        {
-            images[2].gameObject.SetActive(true); // Muestra la segunda imagen a partir del mensaje 5
-        }
-        else if (currentMessageIndex >= 7 && currentMessageIndex < 9)
-        {
-            images[3].gameObject.SetActive(true); // Muestra la segunda imagen a partir del mensaje 5
+            images[imageIndex].gameObject.SetActive(true);
+            StartCoroutine(ZoomAnimation(images[imageIndex]));
         }
         else
         {
-            images[4].gameObject.SetActive(true); // Muestra la segunda imagen a partir del mensaje 5
+            Debug.LogWarning("Índice de imagen no válido para el mensaje actual.");
         }
+    }
+
+    int GetImageIndexForMessage(int messageIndex)
+    {
+        if (messageIndex < 3) return 0;
+        if (messageIndex >= 3 && messageIndex < 5) return 1;
+        if (messageIndex >= 5 && messageIndex < 7) return 2;
+        if (messageIndex >= 7 && messageIndex < 9) return 3;
+        return 4;
+    }
+
+    IEnumerator ZoomAnimation(Image image)
+    {
+        RectTransform rectTransform = image.GetComponent<RectTransform>();
+
+        float zoomFactor = 1.5f; // Puedes ajustar este valor según tus necesidades
+        float duration = 10.0f; // Aumenta este valor para hacer la animación más lenta
+        float startTime = Time.time;
+
+        while (Time.time - startTime < duration)
+        {
+            float progress = (Time.time - startTime) / duration;
+            rectTransform.localScale = Vector3.Lerp(Vector3.one, Vector3.one * zoomFactor, progress);
+            yield return null;
+        }
+
+        // Asegura que la imagen se mantenga en su estado de zoom final
+        rectTransform.localScale = Vector3.one * zoomFactor;
+    }
+
+    void ResetZoom()
+    {
+        // Desactiva todas las imágenes
+        foreach (var img in images)
+        {
+            img.gameObject.SetActive(false);
+        }
+
+        // Encuentra la imagen actualmente activa y la vuelve a activar
+        int activeImageIndex = -1;
+        for (int i = 0; i < images.Length; i++)
+        {
+            if (images[i].gameObject.activeSelf)
+            {
+                activeImageIndex = i;
+                break;
+            }
+        }
+
+        // Si hay un índice de imagen activa válido, restablece su escala
+        if (activeImageIndex != -1)
+        {
+            StartCoroutine(ResetZoomCoroutine(images[activeImageIndex]));
+        }
+    }
+
+    IEnumerator ResetZoomCoroutine(Image image)
+    {
+        RectTransform rectTransform = image.GetComponent<RectTransform>();
+
+        float duration = 0.5f; // Duración del reset de zoom
+        float startTime = Time.time;
+        Vector3 initialScale = rectTransform.localScale;
+
+        while (Time.time - startTime < duration)
+        {
+            float progress = (Time.time - startTime) / duration;
+            rectTransform.localScale = Vector3.Lerp(initialScale, Vector3.one, progress);
+            yield return null;
+        }
+
+        // Asegura que la imagen se mantenga en su estado de zoom final
+        rectTransform.localScale = Vector3.one;
     }
 
     IEnumerator FadeIn()

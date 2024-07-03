@@ -23,6 +23,7 @@
             "scenes": [
               "Assets/Scenes/Almacen 1.unity",
               "Assets/Scenes/Almacen.unity",
+              "Assets/Scenes/Cinematica.unity",
               "Assets/Scenes/Corridor.unity",
               "Assets/Scenes/Habitacion 1.unity",
               "Assets/Scenes/Habitacion 2.unity",
@@ -43,6 +44,7 @@
             "scenes": [
               "Assets/Scenes/Almacen 1.unity",
               "Assets/Scenes/Almacen.unity",
+              "Assets/Scenes/Cinematica.unity",
               "Assets/Scenes/Corridor.unity",
               "Assets/Scenes/Habitacion 1.unity",
               "Assets/Scenes/Habitacion 2.unity",
@@ -58,6 +60,7 @@
             "scenes": [
               "Assets/Scenes/Almacen 1.unity",
               "Assets/Scenes/Almacen.unity",
+              "Assets/Scenes/Cinematica.unity",
               "Assets/Scenes/Corridor.unity",
               "Assets/Scenes/Habitacion 1.unity",
               "Assets/Scenes/Habitacion 2.unity",
@@ -73,6 +76,7 @@
             "scenes": [
               "Assets/Scenes/Almacen 1.unity",
               "Assets/Scenes/Almacen.unity",
+              "Assets/Scenes/Cinematica.unity",
               "Assets/Scenes/Corridor.unity",
               "Assets/Scenes/Habitacion 1.unity",
               "Assets/Scenes/Habitacion 2.unity",
@@ -125,6 +129,7 @@
             "scenes": [
               "Assets/Scenes/Almacen 1.unity",
               "Assets/Scenes/Almacen.unity",
+              "Assets/Scenes/Cinematica.unity",
               "Assets/Scenes/Corridor.unity",
               "Assets/Scenes/Habitacion 1.unity",
               "Assets/Scenes/Habitacion 2.unity",
@@ -138,6 +143,8 @@
           {
             "name": "AudioClip",
             "scenes": [
+              "Assets/Scenes/Cinematica.unity",
+              "Assets/Scenes/Corridor.unity",
               "Assets/Scenes/Habitacion.unity",
               "Assets/Scenes/Hall.unity",
               "Assets/Scenes/Menu.unity"
@@ -150,6 +157,7 @@
             "scenes": [
               "Assets/Scenes/Almacen 1.unity",
               "Assets/Scenes/Almacen.unity",
+              "Assets/Scenes/Cinematica.unity",
               "Assets/Scenes/Corridor.unity",
               "Assets/Scenes/Habitacion 1.unity",
               "Assets/Scenes/Habitacion 2.unity",
@@ -169,6 +177,8 @@
           {
             "name": "AudioMixer",
             "scenes": [
+              "Assets/Scenes/Cinematica.unity",
+              "Assets/Scenes/Corridor.unity",
               "Assets/Scenes/Habitacion.unity",
               "Assets/Scenes/Hall.unity",
               "Assets/Scenes/Menu.unity"
@@ -179,6 +189,8 @@
           {
             "name": "AudioMixerGroup",
             "scenes": [
+              "Assets/Scenes/Cinematica.unity",
+              "Assets/Scenes/Corridor.unity",
               "Assets/Scenes/Habitacion.unity",
               "Assets/Scenes/Hall.unity",
               "Assets/Scenes/Menu.unity"
@@ -189,6 +201,8 @@
           {
             "name": "AudioMixerSnapshot",
             "scenes": [
+              "Assets/Scenes/Cinematica.unity",
+              "Assets/Scenes/Corridor.unity",
               "Assets/Scenes/Habitacion.unity",
               "Assets/Scenes/Hall.unity",
               "Assets/Scenes/Menu.unity"
@@ -199,6 +213,8 @@
           {
             "name": "AudioSource",
             "scenes": [
+              "Assets/Scenes/Cinematica.unity",
+              "Assets/Scenes/Corridor.unity",
               "Assets/Scenes/Habitacion.unity",
               "Assets/Scenes/Hall.unity",
               "Assets/Scenes/Menu.unity"
@@ -209,6 +225,8 @@
           {
             "name": "SampleClip",
             "scenes": [
+              "Assets/Scenes/Cinematica.unity",
+              "Assets/Scenes/Corridor.unity",
               "Assets/Scenes/Habitacion.unity",
               "Assets/Scenes/Hall.unity",
               "Assets/Scenes/Menu.unity"
@@ -254,6 +272,7 @@
             "scenes": [
               "Assets/Scenes/Almacen 1.unity",
               "Assets/Scenes/Almacen.unity",
+              "Assets/Scenes/Cinematica.unity",
               "Assets/Scenes/Corridor.unity",
               "Assets/Scenes/Habitacion 1.unity",
               "Assets/Scenes/Habitacion 2.unity",
@@ -281,6 +300,7 @@
             "scenes": [
               "Assets/Scenes/Almacen 1.unity",
               "Assets/Scenes/Almacen.unity",
+              "Assets/Scenes/Cinematica.unity",
               "Assets/Scenes/Corridor.unity",
               "Assets/Scenes/Habitacion 1.unity",
               "Assets/Scenes/Habitacion 2.unity",
@@ -308,6 +328,7 @@
             "scenes": [
               "Assets/Scenes/Almacen 1.unity",
               "Assets/Scenes/Almacen.unity",
+              "Assets/Scenes/Cinematica.unity",
               "Assets/Scenes/Corridor.unity",
               "Assets/Scenes/Habitacion 1.unity",
               "Assets/Scenes/Habitacion 2.unity",
@@ -329,6 +350,7 @@
             "scenes": [
               "Assets/Scenes/Almacen 1.unity",
               "Assets/Scenes/Almacen.unity",
+              "Assets/Scenes/Cinematica.unity",
               "Assets/Scenes/Corridor.unity",
               "Assets/Scenes/Habitacion 1.unity",
               "Assets/Scenes/Habitacion 2.unity",
@@ -362,6 +384,7 @@
             "scenes": [
               "Assets/Scenes/Almacen 1.unity",
               "Assets/Scenes/Almacen.unity",
+              "Assets/Scenes/Cinematica.unity",
               "Assets/Scenes/Corridor.unity",
               "Assets/Scenes/Habitacion 1.unity",
               "Assets/Scenes/Habitacion 2.unity",
@@ -402,6 +425,7 @@
             "scenes": [
               "Assets/Scenes/Almacen 1.unity",
               "Assets/Scenes/Almacen.unity",
+              "Assets/Scenes/Cinematica.unity",
               "Assets/Scenes/Corridor.unity",
               "Assets/Scenes/Habitacion 1.unity",
               "Assets/Scenes/Habitacion 2.unity",
@@ -423,6 +447,7 @@
             "scenes": [
               "Assets/Scenes/Almacen 1.unity",
               "Assets/Scenes/Almacen.unity",
+              "Assets/Scenes/Cinematica.unity",
               "Assets/Scenes/Corridor.unity",
               "Assets/Scenes/Habitacion 1.unity",
               "Assets/Scenes/Habitacion 2.unity",
@@ -480,6 +505,7 @@
             "scenes": [
               "Assets/Scenes/Almacen 1.unity",
               "Assets/Scenes/Almacen.unity",
+              "Assets/Scenes/Cinematica.unity",
               "Assets/Scenes/Corridor.unity",
               "Assets/Scenes/Habitacion 1.unity",
               "Assets/Scenes/Habitacion 2.unity",
@@ -501,6 +527,7 @@
             "scenes": [
               "Assets/Scenes/Almacen 1.unity",
               "Assets/Scenes/Almacen.unity",
+              "Assets/Scenes/Cinematica.unity",
               "Assets/Scenes/Corridor.unity",
               "Assets/Scenes/Habitacion 1.unity",
               "Assets/Scenes/Habitacion 2.unity",
@@ -516,6 +543,7 @@
             "scenes": [
               "Assets/Scenes/Almacen 1.unity",
               "Assets/Scenes/Almacen.unity",
+              "Assets/Scenes/Cinematica.unity",
               "Assets/Scenes/Corridor.unity",
               "Assets/Scenes/Habitacion 1.unity",
               "Assets/Scenes/Habitacion 2.unity",
@@ -555,6 +583,7 @@
             "scenes": [
               "Assets/Scenes/Almacen 1.unity",
               "Assets/Scenes/Almacen.unity",
+              "Assets/Scenes/Cinematica.unity",
               "Assets/Scenes/Corridor.unity",
               "Assets/Scenes/Habitacion 1.unity",
               "Assets/Scenes/Habitacion 2.unity",
@@ -576,6 +605,7 @@
             "scenes": [
               "Assets/Scenes/Almacen 1.unity",
               "Assets/Scenes/Almacen.unity",
+              "Assets/Scenes/Cinematica.unity",
               "Assets/Scenes/Corridor.unity",
               "Assets/Scenes/Habitacion 1.unity",
               "Assets/Scenes/Habitacion 2.unity",
@@ -615,6 +645,7 @@
             "scenes": [
               "Assets/Scenes/Almacen 1.unity",
               "Assets/Scenes/Almacen.unity",
+              "Assets/Scenes/Cinematica.unity",
               "Assets/Scenes/Corridor.unity",
               "Assets/Scenes/Habitacion 1.unity",
               "Assets/Scenes/Habitacion 2.unity",
@@ -662,6 +693,7 @@
             "scenes": [
               "Assets/Scenes/Almacen 1.unity",
               "Assets/Scenes/Almacen.unity",
+              "Assets/Scenes/Cinematica.unity",
               "Assets/Scenes/Corridor.unity",
               "Assets/Scenes/Habitacion 1.unity",
               "Assets/Scenes/Habitacion 2.unity",
@@ -1278,6 +1310,7 @@
             "scenes": [
               "Assets/Scenes/Almacen 1.unity",
               "Assets/Scenes/Almacen.unity",
+              "Assets/Scenes/Cinematica.unity",
               "Assets/Scenes/Corridor.unity",
               "Assets/Scenes/Habitacion 1.unity",
               "Assets/Scenes/Habitacion 2.unity",
@@ -1328,6 +1361,7 @@
             "scenes": [
               "Assets/Scenes/Almacen 1.unity",
               "Assets/Scenes/Almacen.unity",
+              "Assets/Scenes/Cinematica.unity",
               "Assets/Scenes/Corridor.unity",
               "Assets/Scenes/Habitacion 1.unity",
               "Assets/Scenes/Habitacion 2.unity",
@@ -1340,7 +1374,11 @@
           },
           {
             "name": "CanvasGroup",
-            "scenes": [],
+            "scenes": [
+              "Assets/Scenes/Cinematica.unity",
+              "Assets/Scenes/Corridor.unity",
+              "Assets/Scenes/Hall.unity"
+            ],
             "dependencyType": 0,
             "icon": null
           },
@@ -1349,6 +1387,7 @@
             "scenes": [
               "Assets/Scenes/Almacen 1.unity",
               "Assets/Scenes/Almacen.unity",
+              "Assets/Scenes/Cinematica.unity",
               "Assets/Scenes/Corridor.unity",
               "Assets/Scenes/Habitacion 1.unity",
               "Assets/Scenes/Habitacion 2.unity",

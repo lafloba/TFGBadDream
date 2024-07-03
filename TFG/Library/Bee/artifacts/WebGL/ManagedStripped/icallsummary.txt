@@ -60,6 +60,9 @@ UnityEngine.Application::Quit
 UnityEngine.Application::get_platform
 UnityEngine.AsyncOperation::InternalDestroy
 UnityEngine.AudioListener::set_volume
+UnityEngine.AudioSource::get_isPlaying
+UnityEngine.AudioSource::PlayHelper
+UnityEngine.AudioSource::Stop
 UnityEngine.AudioSource::set_ignoreListenerPause
 UnityEngine.Behaviour::get_enabled
 UnityEngine.Behaviour::get_isActiveAndEnabled
@@ -840,7 +843,6 @@ UnityEngine.Rigidbody::set_isKinematic
 UnityEngine.Rigidbody::set_useGravity
 UnityEngine.ScalableBufferManager::get_heightScaleFactor
 UnityEngine.ScalableBufferManager::get_widthScaleFactor
-UnityEngine.SceneManagement.Scene::GetBuildIndexInternal
 UnityEngine.SceneManagement.Scene::GetNameInternal
 UnityEngine.SceneManagement.SceneManager::get_sceneCount
 UnityEngine.SceneManagement.SceneManager::GetActiveScene_Injected
@@ -850,6 +852,10 @@ UnityEngine.Screen::get_fullScreen
 UnityEngine.Screen::get_height
 UnityEngine.Screen::get_width
 UnityEngine.Screen::get_dpi
+UnityEngine.Screen::SetResolution_Injected
+UnityEngine.Screen::get_currentResolution_Injected
+UnityEngine.Screen::set_fullScreen
+UnityEngine.Screen::get_resolutions
 UnityEngine.Screen::GetScreenOrientation
 UnityEngine.ScriptableObject::CreateScriptableObject
 UnityEngine.ScriptableObject::CreateScriptableObjectInstanceFromType

@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Door : MonoBehaviour
+public class ControladorLlave : MonoBehaviour
 {
-    public static Door Instance;
+    public static ControladorLlave Instance;
 
     [SerializeField] private float contadorLlaves;
 
@@ -12,9 +12,9 @@ public class Door : MonoBehaviour
 
     private void Awake()
     {
-        if(Door.Instance == null)
+        if(ControladorLlave.Instance == null)
         {
-            Door.Instance = this;
+            ControladorLlave.Instance = this;
             DontDestroyOnLoad(this.gameObject);
         }
         else

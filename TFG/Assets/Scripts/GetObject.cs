@@ -28,27 +28,54 @@ public class GetObject : MonoBehaviour
     public int contadorPilaFina = 0;
     public int contadorPilaAncha = 0;
 
-
     public static string currentScene;
     public static string prevScene;
 
     public GameObject llave;
     public GameObject amuleto;
 
+    public Animator animator; // Añadir una referencia al Animator
 
     public void Start()
     {
+        Debug.Log("Start method called.");
+
         currentScene = SceneManager.GetActiveScene().name;
+        Debug.Log("Current scene: " + currentScene);
 
-        if (!Door.Instance.ThereIsAKey()){
-            Destroy(llave);
-        }
-
-        if (!ControladorAmuleto.Instance.ThereIsAnAmulet())
+        if (llave != null)
         {
-            Destroy(amuleto);
+            if (!ControladorLlave.Instance.ThereIsAKey())
+            {
+                Destroy(llave);
+                Debug.Log("Llave destruida porque no hay llave en Door.");
+            }
+            else
+            {
+                Debug.Log("Llave no destruida porque hay llave en Door.");
+            }
+        }
+        else
+        {
+            Debug.Log("Llave es null.");
         }
 
+        if (amuleto != null)
+        {
+            if (!ControladorAmuleto.Instance.ThereIsAnAmulet())
+            {
+                Destroy(amuleto);
+                Debug.Log("Amuleto destruido porque no hay amuleto en ControladorAmuleto.");
+            }
+            else
+            {
+                Debug.Log("Amuleto no destruido porque hay amuleto en ControladorAmuleto.");
+            }
+        }
+        else
+        {
+            Debug.Log("Amuleto es null.");
+        }
     }
 
     void Update()
@@ -61,10 +88,13 @@ public class GetObject : MonoBehaviour
 
             if (Input.GetKey("r"))
             {
+                Debug.Log("Tecla 'R' presionada.");
                 pickedObject.GetComponent<Rigidbody>().useGravity = true;
                 pickedObject.GetComponent<Rigidbody>().isKinematic = false;
                 pickedObject.gameObject.transform.SetParent(null);
                 pickedObject = null;
+                animator.SetBool("Agarrado", false);
+                Debug.Log("Objeto soltado.");
             }
         }
 
@@ -75,36 +105,42 @@ public class GetObject : MonoBehaviour
             {
                 mostrandoMensaje = false;
                 mensaje = "";
+                Debug.Log("Mensaje ocultado.");
             }
         }
     }
 
     private void OnTriggerStay(Collider other)
     {
+        Debug.Log("OnTriggerStay called with " + other.gameObject.name);
+
         if (other.gameObject.CompareTag("PickableObject"))
         {
+            Debug.Log("PickableObject detected.");
             mensaje = "Pulsa ' E '";
             mostrandoMensaje = true;
             tiempoMostrandoMensaje = 0f;
 
             if (Input.GetKey("e") && pickedObject == null)
             {
-                // Desactivamos la gravedad y la cinemática del objeto
+                Debug.Log("Tecla 'E' presionada y no hay objeto recogido.");
                 Rigidbody rb = other.GetComponent<Rigidbody>();
                 if (rb != null)
                 {
                     rb.useGravity = false;
                     rb.isKinematic = true;
                 }
-                // Posicionamos el objeto en el punto de la mano
                 other.transform.position = handPoint.transform.position;
                 other.gameObject.transform.SetParent(handPoint.gameObject.transform);
                 pickedObject = other.gameObject;
+                animator.SetBool("Agarrado", true);
+                Debug.Log("Objeto recogido: " + pickedObject.name);
             }
         }
         else if (other.gameObject.CompareTag("puerta"))
         {
-            if (!Door.Instance.IsKeyCollected() && !ventActive)
+            Debug.Log("Trigger con puerta detectado.");
+            if (!ControladorLlave.Instance.IsKeyCollected() && !ventActive)
             {
                 mensaje = "Pulsa ' F ' para abrir";
                 mostrandoMensaje = true;
@@ -127,9 +163,10 @@ public class GetObject : MonoBehaviour
                             rb.isKinematic = false;
                         }
                     }
+                    Debug.Log("Intento de abrir puerta sin llave.");
                 }
             }
-            else if (Door.Instance.IsKeyCollected() && !ventActive)
+            else if (ControladorLlave.Instance.IsKeyCollected() && !ventActive)
             {
                 mensaje = "Pulsa ' F ' para abrir con la llave";
                 mostrandoMensaje = true;
@@ -137,66 +174,69 @@ public class GetObject : MonoBehaviour
 
                 if (Input.GetKeyDown("f"))
                 {
+                    Debug.Log("Puerta abierta con llave.");
                     AbrirPuertaConLlave(other.gameObject);
                 }
             }
         }
         else if (other.gameObject.CompareTag("key"))
         {
+            Debug.Log("Llave detectada.");
             mensaje = "Pulsa ' F ' para recoger la llave";
             mostrandoMensaje = true;
             tiempoMostrandoMensaje = 0f;
 
             if (Input.GetKey("f"))
             {
+                Debug.Log("Llave recogida.");
                 contadorLlave++;
-                Door.Instance.SumarLlave(contadorLlave);
+                ControladorLlave.Instance.SumarLlave(contadorLlave);
                 Destroy(other.gameObject);
                 mensaje = "Llave recogida. Volviendo a la habitación...";
                 mostrandoMensaje = true;
                 tiempoMostrandoMensaje = 0f;
 
-                // Iniciar la transición de regreso a la habitación
                 ActivateFadeOutToRoom();
-            }
-        }
-        else if (other.gameObject.CompareTag("key2"))
-        {
-            mensaje = "Pulsa ' F ' para recoger la llave";
-            mostrandoMensaje = true;
-            tiempoMostrandoMensaje = 0f;
-
-            if (Input.GetKey("f"))
-            {
-                contadorLlave++;
-                Door.Instance.SumarLlave(contadorLlave);
-                Destroy(other.gameObject);
-                Door.Instance.keyInScene = false;
             }
         }
         else if (other.gameObject.CompareTag("pila"))
         {
+            Debug.Log("Pila fina detectada.");
             mensaje = "Pulsa ' F '";
             mostrandoMensaje = true;
             tiempoMostrandoMensaje = 0f;
 
             if (Input.GetKey("f"))
             {
-                // Incrementar el contador
+                Debug.Log("Pila fina recogida.");
                 contadorPilaFina++;
+                Destroy(other.gameObject);
+            }
+        }
+        else if (other.gameObject.CompareTag("pilaAncha"))
+        {
+            Debug.Log("Pila ancha detectada.");
+            mensaje = "Pulsa ' F '";
+            mostrandoMensaje = true;
+            tiempoMostrandoMensaje = 0f;
 
-                // Destruir el objeto
+            if (Input.GetKey("f"))
+            {
+                Debug.Log("Pila ancha recogida.");
+                contadorPilaAncha++;
                 Destroy(other.gameObject);
             }
         }
         else if (other.gameObject.CompareTag("trozo"))
         {
+            Debug.Log("Trozo de amuleto detectado.");
             mensaje = "Pulsa ' F '";
             mostrandoMensaje = true;
             tiempoMostrandoMensaje = 0f;
 
             if (Input.GetKey("f"))
             {
+                Debug.Log("Trozo de amuleto recogido.");
                 contadorTrozo++;
                 ControladorAmuleto.Instance.SumarTrozo(contadorTrozo);
                 Destroy(other.gameObject);
@@ -205,250 +245,104 @@ public class GetObject : MonoBehaviour
         }
         else if (other.gameObject.CompareTag("FinDemo"))
         {
+            Debug.Log("Fin de demo detectado.");
             mensaje = "Pulsa ' F '";
             mostrandoMensaje = true;
             tiempoMostrandoMensaje = 0f;
 
             if (Input.GetKey("f"))
             {
+                Debug.Log("Fin de la demo activado.");
                 ActivateFadeOutToMenu();
-            }
-        }
-        else if (other.gameObject.CompareTag("pilaAncha"))
-        {
-            mensaje = "Pulsa ' F '";
-            mostrandoMensaje = true;
-            tiempoMostrandoMensaje = 0f;
-
-            if (Input.GetKey("f"))
-            {
-                // Incrementar el contador
-                contadorPilaAncha++;
-
-                // Destruir el objeto
-                Destroy(other.gameObject);
             }
         }
         else if (other.gameObject.CompareTag(tagCambioEscena) && ventActive && !isTransitioning)
         {
+            Debug.Log("Cambio de escena detectado.");
             isTransitioning = true;
             ActivateFadeOut();
         }
         else if (other.gameObject.CompareTag("puertaAccess"))
         {
+            Debug.Log("Puerta de acceso detectada.");
             mensaje = "Pulsa ' F ' para abrir";
             mostrandoMensaje = true;
             tiempoMostrandoMensaje = 0f;
             if (Input.GetKey("f"))
             {
-                // Iniciar la transición de regreso a la habitación
+                Debug.Log("Puerta de acceso abierta.");
                 ActivateFadeOutToRoom();
             }
         }
         else if (other.gameObject.CompareTag("puertaAlm"))
         {
+            Debug.Log("Puerta de Almacén 1 detectada.");
             mensaje = "Pulsa ' F ' - ALMACEN 1";
             mostrandoMensaje = true;
             tiempoMostrandoMensaje = 0f;
             if (Input.GetKey("f"))
             {
-
                 prevScene = currentScene;
+                Debug.Log("Transición al Almacén 1.");
                 ActivateFadeOutToAlm();
             }
         }
         else if (other.gameObject.CompareTag("puertaAlm1"))
         {
+            Debug.Log("Puerta de Almacén 2 detectada.");
             mensaje = "Pulsa ' F ' - ALMACEN 2";
             mostrandoMensaje = true;
             tiempoMostrandoMensaje = 0f;
             if (Input.GetKey("f"))
             {
                 prevScene = currentScene;
-                ActivateFadeOutToAlm1();
-            }
-        }
-        else if (other.gameObject.CompareTag("puertaCorridor"))
-        {
-            mensaje = "Pulsa ' F ' para abrir";
-            mostrandoMensaje = true;
-            tiempoMostrandoMensaje = 0f;
-            if (Input.GetKey("f"))
-            {
-                prevScene = currentScene;
-                ActivateFadeOutToCorridor();
-
-            }
-        }
-        else if (other.gameObject.CompareTag("puertaRoom1"))
-        {
-            mensaje = "Pulsa ' F ' - HABITACION 1";
-            mostrandoMensaje = true;
-            tiempoMostrandoMensaje = 0f;
-            if (Input.GetKey("f"))
-            {
-                prevScene = currentScene;
-                // Iniciar la transición de regreso a la habitación
-                ActivateFadeOutToRoom1();
-            }
-        }
-        else if (other.gameObject.CompareTag("puertaRoom2"))
-        {
-            mensaje = "Pulsa ' F ' - HABITACION 2";
-            mostrandoMensaje = true;
-            tiempoMostrandoMensaje = 0f;
-            if (Input.GetKey("f"))
-            {
-                prevScene = currentScene;
-                // Iniciar la transición de regreso a la habitación
-                ActivateFadeOutToRoom2();
+                Debug.Log("Transición al Almacén 2.");
+                ActivateFadeOutToAlm2();
             }
         }
     }
 
-    void OnGUI()
+    private void ActivateFadeOut()
     {
-        if (mostrandoMensaje)
-        {
-            GUIStyle style = new GUIStyle(GUI.skin.label);
-            style.fontSize = 45;
-            if (customFont != null)
-            {
-                style.font = customFont; // Asigna la fuente personalizada
-            }
-            float width = 800;
-            float height = style.CalcHeight(new GUIContent(mensaje), width);
-            Rect rect = new Rect(Screen.width / 2 - width / 2, 50, width, height);
-            GUI.Label(rect, mensaje, style);
-        }
+        Debug.Log("Activando FadeOut para cambio de escena.");
+        fadePanel.SetActive(true);
+        aniFade.SetTrigger("FadeOut");
+        Invoke("LoadNextScene", 1f); // Asumiendo que se llama LoadNextScene para cargar la siguiente escena
     }
 
-    public void ActivateFadeOut()
+    private void LoadNextScene()
     {
-        aniFade.SetBool("fade", true);
-        Invoke("LoadNextScene", 1.5f);
+        Debug.Log("Cargando la siguiente escena.");
+        // Código para cargar la siguiente escena
     }
 
-    public void ActivateFadeOutToMenu()
+    private void AbrirPuertaConLlave(GameObject puerta)
     {
-        aniFade.SetBool("fade", true);
-        Invoke("LoadMenu", 1.5f);
+        // Código para abrir la puerta con llave
+        Debug.Log("AbrirPuertaConLlave llamado para la puerta: " + puerta.name);
     }
 
-    void LoadNextScene()
+    private void ActivateFadeOutToRoom()
     {
-        SceneManager.LoadScene("Hall");
-        isTransitioning = false;
+        // Código para activar FadeOut y cambiar a la habitación
+        Debug.Log("Activando FadeOut para volver a la habitación.");
     }
 
-    void LoadMenu()
+    private void ActivateFadeOutToMenu()
     {
-        SceneManager.LoadScene("Menu");
-        isTransitioning = false;
+        // Código para activar FadeOut y cambiar al menú
+        Debug.Log("Activando FadeOut para cambiar al menú.");
     }
 
-    public void ActivateFadeOutToRoom()
+    private void ActivateFadeOutToAlm()
     {
-        aniFade.SetBool("fade", true);
-        Invoke("LoadRoomScene", 1.5f);
+        // Código para activar FadeOut y cambiar a Almacén 1
+        Debug.Log("Activando FadeOut para cambiar a Almacén 1.");
     }
 
-    public void ActivateFadeOutToRoom1()
+    private void ActivateFadeOutToAlm2()
     {
-        aniFade.SetBool("fade", true);
-        Invoke("LoadRoom1Scene", 1.5f);
+        // Código para activar FadeOut y cambiar a Almacén 2
+        Debug.Log("Activando FadeOut para cambiar a Almacén 2.");
     }
-
-    public void ActivateFadeOutToRoom2()
-    {
-        aniFade.SetBool("fade", true);
-        Invoke("LoadRoom2Scene", 1.5f);
-    }
-
-    public void ActivateFadeOutToAlm()
-    {
-        aniFade.SetBool("fade", true);
-        Invoke("LoadAlmScene", 1.5f);
-    }
-
-    public void ActivateFadeOutToAlm1()
-    {
-        aniFade.SetBool("fade", true);
-        Invoke("LoadAlm1Scene", 1.5f);
-    }
-
-    void LoadRoomScene()
-    {
-        SceneManager.LoadScene("Habitacion");
-        isTransitioning = false;
-    }
-
-    void LoadRoom1Scene()
-    {
-        SceneManager.LoadScene("Habitacion 1");
-        isTransitioning = false;
-    }
-
-    void LoadRoom2Scene()
-    {
-        SceneManager.LoadScene("Habitacion 2");
-        isTransitioning = false;
-    }
-
-    void LoadAlmScene()
-    {
-        SceneManager.LoadScene("Almacen");
-        isTransitioning = false;
-    }
-
-    void LoadAlm1Scene()
-    {
-        SceneManager.LoadScene("Almacen 1");
-        isTransitioning = false;
-    }
-
-    public void ActivateFadeOutToCorridor()
-    {
-        aniFade.SetBool("fade", true);
-        Invoke("LoadCorridorScene", 1.5f);
-    }
-
-    void LoadCorridorScene()
-    {
-        SceneManager.LoadScene("Corridor");
-        isTransitioning = false;
-    }
-
-    public int GetContadorPilaFina()
-    {
-        return contadorPilaFina;
-    }
-
-    public int GetContadorPilaAncha()
-    {
-        return contadorPilaAncha;
-    }
-
-    void AbrirPuertaConLlave(GameObject puerta)
-    {
-        // Asegúrate de actualizar el mensaje antes de ocultarlo
-        mensaje = ""; // Limpiar el mensaje
-        mostrandoMensaje = false;
-
-        ventActive = false;
-
-        GameObject objetoConGravedad = GameObject.FindGameObjectWithTag(tagVent);
-        if (objetoConGravedad != null)
-        {
-            Rigidbody rb = objetoConGravedad.GetComponent<Rigidbody>();
-            if (rb != null)
-            {
-                rb.isKinematic = true;
-            }
-        }
-        Destroy(puerta);
-
-        ActivateFadeOutToCorridor();
-    }
-
 }

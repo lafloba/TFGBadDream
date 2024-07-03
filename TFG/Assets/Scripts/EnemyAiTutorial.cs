@@ -22,16 +22,13 @@ public class EnemyAiTutorial : MonoBehaviour
     private bool isChasingPlayer = false; // Estado de persecución
     private bool isCollidingWithPlayer = false;
 
-    // Variables para la fase de preparación
-    public float preparationDuration = 0.5f; // Duración de la fase de preparación
-    private float preparationStartTime;
-    private bool isInPreparationPhase = false;
-
     // Referencia al jugador
     private Transform player;
     private EquipBlanket equipBlanket; // Referencia al script EquipBlanket
 
     private Rigidbody rb; // Referencia al Rigidbody del enemigo
+
+    public float cantidadDaño; // Daño causado al jugador
 
     void Start()
     {
@@ -64,8 +61,10 @@ public class EnemyAiTutorial : MonoBehaviour
     {
         barraVidaEnemigo.value = currentHealth;
 
-        if (!IsInPreparationPhase() && !isCollidingWithPlayer) // Asegurarse de que el enemigo no se mueva si está colisionando con el jugador
+        // Verificar si el jugador está en el rango de detección
+        if (CanSeePlayer())
         {
+<<<<<<< Updated upstream
             // Verificar si el jugador está en el rango de detección
             if (CanSeePlayer())
             {
@@ -93,45 +92,56 @@ public class EnemyAiTutorial : MonoBehaviour
                 Debug.Log("Player out of range, stop chasing.");
                 isChasingPlayer = false; // Dejar de perseguir al jugador si está demasiado lejos
             }
+=======
+            Debug.Log("Can see player!");
+            isChasingPlayer = true;
+            moveDirection = (player.position - transform.position).normalized; // Perseguir al jugador
+            //moveDirection.y = 0; // Ignorar la componente Y
+        }
+        else if (isChasingPlayer && Vector3.Distance(transform.position, player.position) > stopChasingDistance)
+        {
+            Debug.Log("Player out of range, stop chasing.");
+            isChasingPlayer = false; // Dejar de perseguir al jugador si está demasiado lejos
+        }
+>>>>>>> Stashed changes
 
-            // Movimiento y cambio de dirección
-            if (isChasingPlayer)
+        // Movimiento y cambio de dirección
+        if (isChasingPlayer)
+        {
+            // Perseguir al jugador con velocidad de persecución
+            transform.Translate(moveDirection * chaseSpeed * Time.deltaTime, Space.World);
+        }
+        else
+        {
+            // Movimiento aleatorio con velocidad normal
+            if (!IsObstacleInFront())
             {
-                // Perseguir al jugador con velocidad de persecución
-                transform.Translate(moveDirection * chaseSpeed * Time.deltaTime, Space.World);
+                transform.Translate(moveDirection * moveSpeed * Time.deltaTime, Space.World);
             }
             else
             {
-                // Movimiento aleatorio con velocidad normal
-                if (!IsObstacleInFront())
-                {
-                    transform.Translate(moveDirection * moveSpeed * Time.deltaTime, Space.World);
-                }
-                else
-                {
-                    ChangeMoveDirection(); // Cambiar la dirección de movimiento al detectar un obstáculo
-                }
-
-                timeSinceLastDirectionChange += Time.deltaTime;
-
-                if (timeSinceLastDirectionChange >= changeDirectionTime && timeUntilNextDirectionChange <= 0f)
-                {
-                    ChangeMoveDirection(); // Cambiar la dirección de movimiento
-                }
-                else if (timeUntilNextDirectionChange > 0f)
-                {
-                    timeUntilNextDirectionChange -= Time.deltaTime;
-                }
+                ChangeMoveDirection(); // Cambiar la dirección de movimiento al detectar un obstáculo
             }
 
-            bool isMoving = moveDirection != Vector3.zero;
-            ani.SetBool("walk", isMoving); // Actualizar la animación basada en si el enemigo está moviéndose
+            timeSinceLastDirectionChange += Time.deltaTime;
 
-            // Rotar al enemigo en la dirección de movimiento
-            if (isMoving)
+            if (timeSinceLastDirectionChange >= changeDirectionTime && timeUntilNextDirectionChange <= 0f)
             {
-                RotateTowardsMovementDirection();
+                ChangeMoveDirection(); // Cambiar la dirección de movimiento
             }
+            else if (timeUntilNextDirectionChange > 0f)
+            {
+                timeUntilNextDirectionChange -= Time.deltaTime;
+            }
+        }
+
+        bool isMoving = moveDirection != Vector3.zero;
+        ani.SetBool("walk", isMoving); // Actualizar la animación basada en si el enemigo está moviéndose
+
+        // Rotar al enemigo en la dirección de movimiento
+        if (isMoving)
+        {
+            RotateTowardsMovementDirection();
         }
         else
         {
@@ -150,36 +160,16 @@ public class EnemyAiTutorial : MonoBehaviour
         moveDirection = newDirection;
         timeSinceLastDirectionChange = 0f;
         timeUntilNextDirectionChange = changeDirectionTime;
-
-        // Configurar la fase de preparación
-        preparationStartTime = Time.time;
-        isInPreparationPhase = true;
-    }
-
-    bool IsInPreparationPhase()
-    {
-        return isInPreparationPhase && Time.time < preparationStartTime + preparationDuration;
     }
 
     void FixedUpdate()
     {
-        if (IsInPreparationPhase())
+        float rotationSpeed = 500f; // Velocidad de rotación
+        Vector3 correctedDirection = new Vector3(moveDirection.x, 0, moveDirection.z).normalized;
+        if (correctedDirection.sqrMagnitude > 0.01f) // Verifica que el vector no sea casi nulo
         {
-            float rotationSpeed = 500f; // Velocidad de rotación
-            Vector3 correctedDirection = new Vector3(moveDirection.x, 0, moveDirection.z).normalized;
-            if (correctedDirection.sqrMagnitude > 0.01f) // Verifica que el vector no sea casi nulo
-            {
-                Quaternion targetRotation = Quaternion.LookRotation(correctedDirection, Vector3.up);
-                transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.fixedDeltaTime);
-            }
-
-            // Comprueba si la fase de preparación ha finalizado
-            if (Time.time >= preparationStartTime + preparationDuration)
-            {
-                isInPreparationPhase = false;
-                // Reanudar el movimiento
-                moveDirection = correctedDirection.normalized;
-            }
+            Quaternion targetRotation = Quaternion.LookRotation(correctedDirection, Vector3.up);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.fixedDeltaTime);
         }
     }
 
@@ -263,17 +253,18 @@ public class EnemyAiTutorial : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Player") && collision.collider.GetComponent<CodigoSalud>())
         {
             isCollidingWithPlayer = true;
             ani.SetBool("walk", false); // Detener la animación de caminar
             Debug.Log("Enemy collided with player and stopped.");
+            collision.collider.GetComponent<CodigoSalud>().recibirDaño(cantidadDaño);
         }
     }
 
     void OnCollisionStay(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Player") && collision.collider.GetComponent<CodigoSalud>())
         {
             isCollidingWithPlayer = true;
             ani.SetBool("walk", false); // Asegurarse de que la animación de caminar esté detenida
@@ -282,7 +273,7 @@ public class EnemyAiTutorial : MonoBehaviour
 
     void OnCollisionExit(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Player") && collision.collider.GetComponent<CodigoSalud>())
         {
             isCollidingWithPlayer = false;
             Debug.Log("Enemy stopped colliding with player and resumed movement.");

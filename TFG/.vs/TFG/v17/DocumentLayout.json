@@ -7,8 +7,28 @@
       "RelativeMoniker": "D:0:0:{62873BB6-A352-5450-430A-56E3FCEBDD74}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\enemyaitutorial.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{62873BB6-A352-5450-430A-56E3FCEBDD74}|Assembly-CSharp.csproj|C:\\Users\\laura\\Documents\\GitHub\\TFGBadDream\\TFG\\assets\\scripts\\getobject.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{62873BB6-A352-5450-430A-56E3FCEBDD74}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\getobject.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{62873BB6-A352-5450-430A-56E3FCEBDD74}|Assembly-CSharp.csproj|C:\\Users\\laura\\Documents\\GitHub\\TFGBadDream\\TFG\\assets\\scripts\\controladorllave.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{62873BB6-A352-5450-430A-56E3FCEBDD74}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\controladorllave.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{62873BB6-A352-5450-430A-56E3FCEBDD74}|Assembly-CSharp.csproj|C:\\Users\\laura\\Documents\\GitHub\\TFGBadDream\\TFG\\assets\\scripts\\controladoramuleto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{62873BB6-A352-5450-430A-56E3FCEBDD74}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\controladoramuleto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{62873BB6-A352-5450-430A-56E3FCEBDD74}|Assembly-CSharp.csproj|C:\\Users\\laura\\Documents\\GitHub\\TFGBadDream\\TFG\\assets\\scripts\\codigosalud.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{62873BB6-A352-5450-430A-56E3FCEBDD74}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\codigosalud.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{62873BB6-A352-5450-430A-56E3FCEBDD74}|Assembly-CSharp.csproj|C:\\Users\\laura\\Documents\\GitHub\\TFGBadDream\\TFG\\assets\\scripts\\cinematiccontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{62873BB6-A352-5450-430A-56E3FCEBDD74}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\cinematiccontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{62873BB6-A352-5450-430A-56E3FCEBDD74}|Assembly-CSharp.csproj|C:\\Users\\laura\\Documents\\GitHub\\TFGBadDream\\TFG\\assets\\scripts\\camerafollow.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{62873BB6-A352-5450-430A-56E3FCEBDD74}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\camerafollow.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -18,8 +38,56 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 4,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "GetObject.cs",
+              "DocumentMoniker": "C:\\Users\\laura\\Documents\\GitHub\\TFGBadDream\\TFG\\Assets\\Scripts\\GetObject.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\GetObject.cs",
+              "ToolTip": "C:\\Users\\laura\\Documents\\GitHub\\TFGBadDream\\TFG\\Assets\\Scripts\\GetObject.cs",
+              "RelativeToolTip": "Assets\\Scripts\\GetObject.cs",
+              "ViewState": "AQIAAEsBAAAAAAAAAAAAwFwBAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-03T17:42:08.714Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ControladorLlave.cs",
+              "DocumentMoniker": "C:\\Users\\laura\\Documents\\GitHub\\TFGBadDream\\TFG\\Assets\\Scripts\\ControladorLlave.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\ControladorLlave.cs",
+              "ToolTip": "C:\\Users\\laura\\Documents\\GitHub\\TFGBadDream\\TFG\\Assets\\Scripts\\ControladorLlave.cs",
+              "RelativeToolTip": "Assets\\Scripts\\ControladorLlave.cs",
+              "ViewState": "AQIAABgAAAAAAAAAAAAAACgAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-03T11:59:48.891Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ControladorAmuleto.cs",
+              "DocumentMoniker": "C:\\Users\\laura\\Documents\\GitHub\\TFGBadDream\\TFG\\Assets\\Scripts\\ControladorAmuleto.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\ControladorAmuleto.cs",
+              "ToolTip": "C:\\Users\\laura\\Documents\\GitHub\\TFGBadDream\\TFG\\Assets\\Scripts\\ControladorAmuleto.cs",
+              "RelativeToolTip": "Assets\\Scripts\\ControladorAmuleto.cs",
+              "ViewState": "AQIAABcAAAAAAAAAAAAAACcAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-03T17:39:06.463Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "CodigoSalud.cs",
+              "DocumentMoniker": "C:\\Users\\laura\\Documents\\GitHub\\TFGBadDream\\TFG\\Assets\\Scripts\\CodigoSalud.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\CodigoSalud.cs",
+              "ToolTip": "C:\\Users\\laura\\Documents\\GitHub\\TFGBadDream\\TFG\\Assets\\Scripts\\CodigoSalud.cs",
+              "RelativeToolTip": "Assets\\Scripts\\CodigoSalud.cs",
+              "ViewState": "AQIAABgAAAAAAAAAAAAAwCkAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-03T10:28:05.964Z"
+            },
             {
               "$type": "Document",
               "DocumentIndex": 0,
@@ -28,22 +96,34 @@
               "RelativeDocumentMoniker": "Assets\\Scripts\\EnemyAiTutorial.cs",
               "ToolTip": "C:\\Users\\laura\\Documents\\GitHub\\TFGBadDream\\TFG\\Assets\\Scripts\\EnemyAiTutorial.cs",
               "RelativeToolTip": "Assets\\Scripts\\EnemyAiTutorial.cs",
-              "ViewState": "AQIAAEQAAAAAAAAAAAAAAB0BAAAAAAAA",
+              "ViewState": "AQIAAPEAAAAAAAAAAAAYwAQBAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-07-01T14:59:17.823Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 5,
               "Title": "CinematicController.cs",
               "DocumentMoniker": "C:\\Users\\laura\\Documents\\GitHub\\TFGBadDream\\TFG\\Assets\\Scripts\\CinematicController.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\CinematicController.cs",
               "ToolTip": "C:\\Users\\laura\\Documents\\GitHub\\TFGBadDream\\TFG\\Assets\\Scripts\\CinematicController.cs",
               "RelativeToolTip": "Assets\\Scripts\\CinematicController.cs",
-              "ViewState": "AQIAAJoAAAAAAAAAAAAgwJcAAAAFAAAA",
+              "ViewState": "AQIAAJwAAAAAAAAAAAAAwK0AAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-01T11:17:54.42Z"
+              "WhenOpened": "2024-07-03T17:38:04.057Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "CameraFollow.cs",
+              "DocumentMoniker": "C:\\Users\\laura\\Documents\\GitHub\\TFGBadDream\\TFG\\Assets\\Scripts\\CameraFollow.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\CameraFollow.cs",
+              "ToolTip": "C:\\Users\\laura\\Documents\\GitHub\\TFGBadDream\\TFG\\Assets\\Scripts\\CameraFollow.cs",
+              "RelativeToolTip": "Assets\\Scripts\\CameraFollow.cs",
+              "ViewState": "AQIAABIAAAAAAAAAAAA1wCUAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-03T17:37:55.044Z"
             }
           ]
         }

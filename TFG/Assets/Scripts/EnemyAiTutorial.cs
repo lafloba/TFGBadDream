@@ -45,7 +45,7 @@ public class EnemyAiTutorial : MonoBehaviour
 
         if (player == null)
         {
-            Debug.LogError("Player GameObject not found Make sure it exists and is named 'Artie'.");
+            Debug.LogError("Player GameObject not found! Make sure it exists and is named 'Artie'.");
         }
         else
         {
@@ -71,8 +71,22 @@ public class EnemyAiTutorial : MonoBehaviour
             {
                 Debug.Log("Can see player!");
                 isChasingPlayer = true;
-                moveDirection = (player.position - transform.position).normalized; // Perseguir al jugador
-                moveDirection.y = 0; // Ignorar la componente Y
+
+                // Calcula la dirección del jugador desde la posición actual
+                Vector3 directionToPlayer = player.position - transform.position;
+
+                // Establece la componente y a 0
+                directionToPlayer.y = 0;
+
+                // Normaliza el vector resultante (asegura que tenga longitud 1)
+                if (directionToPlayer != Vector3.zero)
+                {
+                    moveDirection = directionToPlayer.normalized;
+                }
+                else
+                {
+                    moveDirection = Vector3.zero; // Maneja el caso cuando directionToPlayer es cero
+                }
             }
             else if (isChasingPlayer && Vector3.Distance(transform.position, player.position) > stopChasingDistance)
             {
@@ -181,15 +195,8 @@ public class EnemyAiTutorial : MonoBehaviour
 
     bool IsObstacleInFront()
     {
-        RaycastHit hit;
-        // Realiza un SphereCast para detectar obstáculos en frente del enemigo
-        if (Physics.SphereCast(transform.position, 0.5f, transform.forward, out hit, obstacleDetectionRange, obstacleLayer))
-        {
-            // Si encuentra un obstáculo, devuelve true
-            Debug.Log("Obstacle detected: " + hit.collider.gameObject.name);
-            return true;
-        }
-        return false;
+        // Usar SphereCast para detectar obstáculos
+        return Physics.SphereCast(transform.position, 0.5f, transform.forward, out _, obstacleDetectionRange, obstacleLayer);
     }
 
     bool CanSeePlayer()
@@ -205,7 +212,6 @@ public class EnemyAiTutorial : MonoBehaviour
         if (Vector3.Distance(transform.position, player.position) <= detectionRange)
         {
             Vector3 directionToPlayer = (player.position - transform.position).normalized;
-            directionToPlayer.y = 0; // Ignorar la componente Y
 
             // Raycast para verificar si hay obstáculos entre el enemigo y el jugador
             RaycastHit hit;

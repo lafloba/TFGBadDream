@@ -6,7 +6,7 @@ public class ControladorLlave : MonoBehaviour
 {
     public static ControladorLlave Instance;
 
-    [SerializeField] private float contadorLlaves;
+    [SerializeField] public float contadorLlaves;
 
     [SerializeField] public bool keyInScene = true;
 

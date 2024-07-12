@@ -428,6 +428,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Salud: 100
   SaludMaxima: 100
+  "da\xF1ado": {fileID: 0}
   BarraSalud: {fileID: 1143304539}
 --- !u!1 &202069185
 GameObject:
@@ -717,7 +718,7 @@ GameObject:
   - component: {fileID: 335368833}
   m_Layer: 0
   m_Name: reloj
-  m_TagString: PickableObject
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

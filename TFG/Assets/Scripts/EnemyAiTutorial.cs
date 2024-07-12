@@ -22,13 +22,18 @@ public class EnemyAiTutorial : MonoBehaviour
     private bool isChasingPlayer = false; // Estado de persecución
     private bool isCollidingWithPlayer = false;
 
+    // Variables para la fase de preparación
+    public float preparationDuration = 0.5f; // Duración de la fase de preparación
+    private float preparationStartTime;
+    private bool isInPreparationPhase = false;
+
     // Referencia al jugador
     private Transform player;
     private EquipBlanket equipBlanket; // Referencia al script EquipBlanket
 
     private Rigidbody rb; // Referencia al Rigidbody del enemigo
 
-    public float cantidadDaño; // Daño causado al jugador
+    public float cantidadDaño;//daño causado al jugador
 
     void Start()
     {
@@ -42,7 +47,7 @@ public class EnemyAiTutorial : MonoBehaviour
 
         if (player == null)
         {
-            Debug.LogError("Player GameObject not found! Make sure it exists and is named 'Artie'.");
+            Debug.LogError("Player GameObject not found Make sure it exists and is named 'Artie'.");
         }
         else
         {
@@ -61,87 +66,60 @@ public class EnemyAiTutorial : MonoBehaviour
     {
         barraVidaEnemigo.value = currentHealth;
 
-        // Verificar si el jugador está en el rango de detección
-        if (CanSeePlayer())
+        if (!IsInPreparationPhase() && !isCollidingWithPlayer) // Asegurarse de que el enemigo no se mueva si está colisionando con el jugador
         {
-<<<<<<< Updated upstream
             // Verificar si el jugador está en el rango de detección
             if (CanSeePlayer())
             {
                 Debug.Log("Can see player!");
                 isChasingPlayer = true;
-
-                // Calcula la dirección del jugador desde la posición actual
-                Vector3 directionToPlayer = player.position - transform.position;
-
-                // Establece la componente y a 0
-                directionToPlayer.y = 0;
-
-                // Normaliza el vector resultante (asegura que tenga longitud 1)
-                if (directionToPlayer != Vector3.zero)
-                {
-                    moveDirection = directionToPlayer.normalized;
-                }
-                else
-                {
-                    moveDirection = Vector3.zero; // Maneja el caso cuando directionToPlayer es cero
-                }
+                moveDirection = (player.position - transform.position).normalized; // Perseguir al jugador
+                moveDirection.y = 0; // Ignorar la componente Y
             }
             else if (isChasingPlayer && Vector3.Distance(transform.position, player.position) > stopChasingDistance)
             {
                 Debug.Log("Player out of range, stop chasing.");
                 isChasingPlayer = false; // Dejar de perseguir al jugador si está demasiado lejos
             }
-=======
-            Debug.Log("Can see player!");
-            isChasingPlayer = true;
-            moveDirection = (player.position - transform.position).normalized; // Perseguir al jugador
-            //moveDirection.y = 0; // Ignorar la componente Y
-        }
-        else if (isChasingPlayer && Vector3.Distance(transform.position, player.position) > stopChasingDistance)
-        {
-            Debug.Log("Player out of range, stop chasing.");
-            isChasingPlayer = false; // Dejar de perseguir al jugador si está demasiado lejos
-        }
->>>>>>> Stashed changes
 
-        // Movimiento y cambio de dirección
-        if (isChasingPlayer)
-        {
-            // Perseguir al jugador con velocidad de persecución
-            transform.Translate(moveDirection * chaseSpeed * Time.deltaTime, Space.World);
-        }
-        else
-        {
-            // Movimiento aleatorio con velocidad normal
-            if (!IsObstacleInFront())
+            // Movimiento y cambio de dirección
+            if (isChasingPlayer)
             {
-                transform.Translate(moveDirection * moveSpeed * Time.deltaTime, Space.World);
+                // Perseguir al jugador con velocidad de persecución
+                transform.Translate(moveDirection * chaseSpeed * Time.deltaTime, Space.World);
             }
             else
             {
-                ChangeMoveDirection(); // Cambiar la dirección de movimiento al detectar un obstáculo
+                // Movimiento aleatorio con velocidad normal
+                if (!IsObstacleInFront())
+                {
+                    transform.Translate(moveDirection * moveSpeed * Time.deltaTime, Space.World);
+                }
+                else
+                {
+                    ChangeMoveDirection(); // Cambiar la dirección de movimiento al detectar un obstáculo
+                }
+
+                timeSinceLastDirectionChange += Time.deltaTime;
+
+                if (timeSinceLastDirectionChange >= changeDirectionTime && timeUntilNextDirectionChange <= 0f)
+                {
+                    ChangeMoveDirection(); // Cambiar la dirección de movimiento
+                }
+                else if (timeUntilNextDirectionChange > 0f)
+                {
+                    timeUntilNextDirectionChange -= Time.deltaTime;
+                }
             }
 
-            timeSinceLastDirectionChange += Time.deltaTime;
+            bool isMoving = moveDirection != Vector3.zero;
+            ani.SetBool("walk", isMoving); // Actualizar la animación basada en si el enemigo está moviéndose
 
-            if (timeSinceLastDirectionChange >= changeDirectionTime && timeUntilNextDirectionChange <= 0f)
+            // Rotar al enemigo en la dirección de movimiento
+            if (isMoving)
             {
-                ChangeMoveDirection(); // Cambiar la dirección de movimiento
+                RotateTowardsMovementDirection();
             }
-            else if (timeUntilNextDirectionChange > 0f)
-            {
-                timeUntilNextDirectionChange -= Time.deltaTime;
-            }
-        }
-
-        bool isMoving = moveDirection != Vector3.zero;
-        ani.SetBool("walk", isMoving); // Actualizar la animación basada en si el enemigo está moviéndose
-
-        // Rotar al enemigo en la dirección de movimiento
-        if (isMoving)
-        {
-            RotateTowardsMovementDirection();
         }
         else
         {
@@ -160,16 +138,36 @@ public class EnemyAiTutorial : MonoBehaviour
         moveDirection = newDirection;
         timeSinceLastDirectionChange = 0f;
         timeUntilNextDirectionChange = changeDirectionTime;
+
+        // Configurar la fase de preparación
+        preparationStartTime = Time.time;
+        isInPreparationPhase = true;
+    }
+
+    bool IsInPreparationPhase()
+    {
+        return isInPreparationPhase && Time.time < preparationStartTime + preparationDuration;
     }
 
     void FixedUpdate()
     {
-        float rotationSpeed = 500f; // Velocidad de rotación
-        Vector3 correctedDirection = new Vector3(moveDirection.x, 0, moveDirection.z).normalized;
-        if (correctedDirection.sqrMagnitude > 0.01f) // Verifica que el vector no sea casi nulo
+        if (IsInPreparationPhase())
         {
-            Quaternion targetRotation = Quaternion.LookRotation(correctedDirection, Vector3.up);
-            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.fixedDeltaTime);
+            float rotationSpeed = 500f; // Velocidad de rotación
+            Vector3 correctedDirection = new Vector3(moveDirection.x, 0, moveDirection.z).normalized;
+            if (correctedDirection.sqrMagnitude > 0.01f) // Verifica que el vector no sea casi nulo
+            {
+                Quaternion targetRotation = Quaternion.LookRotation(correctedDirection, Vector3.up);
+                transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.fixedDeltaTime);
+            }
+
+            // Comprueba si la fase de preparación ha finalizado
+            if (Time.time >= preparationStartTime + preparationDuration)
+            {
+                isInPreparationPhase = false;
+                // Reanudar el movimiento
+                moveDirection = correctedDirection.normalized;
+            }
         }
     }
 
@@ -185,8 +183,15 @@ public class EnemyAiTutorial : MonoBehaviour
 
     bool IsObstacleInFront()
     {
-        // Usar SphereCast para detectar obstáculos
-        return Physics.SphereCast(transform.position, 0.5f, transform.forward, out _, obstacleDetectionRange, obstacleLayer);
+        RaycastHit hit;
+        // Realiza un SphereCast para detectar obstáculos en frente del enemigo
+        if (Physics.SphereCast(transform.position, 0.5f, transform.forward, out hit, obstacleDetectionRange, obstacleLayer))
+        {
+            // Si encuentra un obstáculo, devuelve true
+            Debug.Log("Obstacle detected: " + hit.collider.gameObject.name);
+            return true;
+        }
+        return false;
     }
 
     bool CanSeePlayer()
@@ -202,6 +207,7 @@ public class EnemyAiTutorial : MonoBehaviour
         if (Vector3.Distance(transform.position, player.position) <= detectionRange)
         {
             Vector3 directionToPlayer = (player.position - transform.position).normalized;
+            directionToPlayer.y = 0; // Ignorar la componente Y
 
             // Raycast para verificar si hay obstáculos entre el enemigo y el jugador
             RaycastHit hit;

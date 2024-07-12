@@ -6,7 +6,7 @@ public class ControladorAmuleto : MonoBehaviour
 {
     public static ControladorAmuleto Instance;
 
-    [SerializeField] private float contadorTrozos;
+    [SerializeField] public float contadorTrozos;
     [SerializeField] public bool amuletInScene = true;
 
     private void Awake()

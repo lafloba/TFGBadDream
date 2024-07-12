@@ -87,7 +87,7 @@ public class EquipBlanket : MonoBehaviour
         equipTime = 0f;
     }
 
-    void Unequip()
+    public void Unequip()
     {
         // Desactivar el objeto manta
         blanketObject.SetActive(false);

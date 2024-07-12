@@ -9225,6 +9225,7 @@ MonoBehaviour:
   customFont: {fileID: 12800000, guid: b7767c58b6f22f64fa09cc0f99f22b0f, type: 3}
   aniFade: {fileID: 1505559728}
   fadePanel: {fileID: 1505559726}
+  isTransitioning: 0
   contadorPilaFina: 0
   contadorPilaAncha: 0
   llave: {fileID: 0}
@@ -12230,7 +12231,6 @@ MonoBehaviour:
   gravity: 9.8
   fallVelocity: 0
   mainCamera: {fileID: 1707902148}
-  canMove: 0
 --- !u!143 &2131856051
 CharacterController:
   m_ObjectHideFlags: 0

@@ -26,7 +26,7 @@ public class TutorialTextManager : MonoBehaviour
 
     private int currentMessageIndex = 0;
     private bool spaceKeyBlocked = false;
-    private bool wasSpaceKeyPressedWhileInactive = false; // Agrega esta variable para rastrear si la tecla B fue presionada mientras el panel estaba inactivo
+    private bool wasSpaceKeyPressedWhileInactive = false; // Agrega esta variable para rastrear si la tecla Space fue presionada mientras el panel estaba inactivo
 
     void Start()
     {
@@ -120,7 +120,7 @@ public class TutorialTextManager : MonoBehaviour
 
         if (!tutorialPanel.activeSelf)
         {
-            wasSpaceKeyPressedWhileInactive = Input.GetKeyDown(KeyCode.B); // Guarda si la tecla B fue presionada mientras el panel estaba inactivo
+            wasSpaceKeyPressedWhileInactive = Input.GetKeyDown(KeyCode.Space); // Guarda si la tecla B fue presionada mientras el panel estaba inactivo
         }
         else
         {

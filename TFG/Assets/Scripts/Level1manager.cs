@@ -8,10 +8,11 @@ public class Level1Manager : MonoBehaviour
     public GameObject objetoADestruir;
     public Collider colisionadorAAparecer;
 
+
     // Start is called before the first frame update
     void Start()
     {
-        // Make sure the collider is initially disabled
+        // Asegúrate de que el colisionador esté inicialmente desactivado
         if (colisionadorAAparecer != null)
         {
             colisionadorAAparecer.enabled = false;
@@ -26,7 +27,7 @@ public class Level1Manager : MonoBehaviour
             if (objetoADestruir != null)
             {
                 Destroy(objetoADestruir);
-                objetoADestruir = null; // Ensure we don't try to destroy it again
+                objetoADestruir = null; // Asegúrate de no intentar destruirlo nuevamente
             }
 
             if (colisionadorAAparecer != null)

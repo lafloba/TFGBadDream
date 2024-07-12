@@ -17,35 +17,31 @@ public class PlayerController : MonoBehaviour
     private Vector3 camForward;
     private Vector3 camRight;
 
-    public bool canMove;
-
    
     void Start()
     {
         player = GetComponent<CharacterController>();
-        canMove = true;
     }
 
     void Update()
     {
-        if (canMove)
-        {
-            horizontalMove = Input.GetAxis("Horizontal");
-            verticalMove = Input.GetAxis("Vertical");
+     
+        horizontalMove = Input.GetAxis("Horizontal");
+        verticalMove = Input.GetAxis("Vertical");
 
-            playerInput = new Vector3(horizontalMove, 0, verticalMove).normalized;
+        playerInput = new Vector3(horizontalMove, 0, verticalMove).normalized;
 
-            camDirection();
+        camDirection();
 
-            movePlayer = playerInput.x * camRight + playerInput.z * camForward;
-            movePlayer = movePlayer * playerSpeed;
+        movePlayer = playerInput.x * camRight + playerInput.z * camForward;
+        movePlayer = movePlayer * playerSpeed;
 
-            player.transform.LookAt(player.transform.position + movePlayer);
+        player.transform.LookAt(player.transform.position + movePlayer);
 
-            SetGravity();
+        SetGravity();
 
-            player.Move(movePlayer * Time.deltaTime);
-        }
+        player.Move(movePlayer * Time.deltaTime);
+        
         
     }
 

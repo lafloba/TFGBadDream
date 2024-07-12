@@ -33,7 +33,7 @@ public class EnemyAiTutorial : MonoBehaviour
 
     private Rigidbody rb; // Referencia al Rigidbody del enemigo
 
-    public float cantidadDaño;//daño causado al jugador
+    public float cantidadDaño; // Daño causado al jugador
 
     void Start()
     {
@@ -47,7 +47,7 @@ public class EnemyAiTutorial : MonoBehaviour
 
         if (player == null)
         {
-            Debug.LogError("Player GameObject not found Make sure it exists and is named 'Artie'.");
+            Debug.LogError("Player GameObject not found. Make sure it exists and is named 'Artie'.");
         }
         else
         {
@@ -265,6 +265,11 @@ public class EnemyAiTutorial : MonoBehaviour
             ani.SetBool("walk", false); // Detener la animación de caminar
             Debug.Log("Enemy collided with player and stopped.");
             collision.collider.GetComponent<CodigoSalud>().recibirDaño(cantidadDaño);
+
+            if (equipBlanket != null)
+            {
+                equipBlanket.Unequip(); // Usar la instancia de equipBlanket para llamar a Unequip
+            }
         }
     }
 

@@ -22,7 +22,7 @@ public class GetObject : MonoBehaviour
 
     public Animator aniFade;
     public GameObject fadePanel; // Referencia al panel de fade-out
-    private bool isTransitioning = false; // Controla si se está realizando una transición de escena
+    public bool isTransitioning = false; // Controla si se está realizando una transición de escena
 
     // Variables públicas para contar las veces que se ha destruido el objeto
     public int contadorPilaFina = 0;
@@ -36,9 +36,11 @@ public class GetObject : MonoBehaviour
     public GameObject amuleto;
 
     public Animator animator; // Añadir una referencia al Animator
+
     public void Start()
     {
         currentScene = SceneManager.GetActiveScene().name;
+        
 
         if (!ControladorLlave.Instance.ThereIsAKey())
         {
